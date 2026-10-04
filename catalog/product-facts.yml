@@ -1017,8 +1017,8 @@ facts:
   overage: upgrade
   status: vendor-verified
   source_authority: vendor
-  verified_at: '2026-09-07'
-  expires_after: '2026-10-01'
+  verified_at: '2026-10-04'
+  expires_after: '2026-11-14'
   source_urls:
   - https://www.blacksmith.sh/pricing
   notes:
@@ -1080,8 +1080,8 @@ facts:
   overage: upgrade
   status: vendor-verified
   source_authority: vendor
-  verified_at: '2026-09-07'
-  expires_after: '2026-10-03'
+  verified_at: '2026-10-04'
+  expires_after: '2026-11-15'
   source_urls:
   - https://buddy.works/pricing
   - https://buddy.works/compare/circleci-alternative
@@ -1141,8 +1141,8 @@ facts:
   overage: metered/upgrade
   status: vendor-verified
   source_authority: vendor
-  verified_at: '2026-08-10'
-  expires_after: '2026-10-02'
+  verified_at: '2026-10-04'
+  expires_after: '2026-11-16'
   source_urls:
   - https://codemagic.io/pricing/
   notes: []
@@ -1168,8 +1168,8 @@ facts:
   overage: upgrade
   status: vendor-verified
   source_authority: vendor
-  verified_at: '2026-08-10'
-  expires_after: '2026-10-02'
+  verified_at: '2026-10-04'
+  expires_after: '2026-11-17'
   source_urls:
   - https://appcircle.io/pricing
   notes: []
@@ -1196,8 +1196,8 @@ facts:
   overage: upgrade
   status: vendor-verified
   source_authority: vendor
-  verified_at: '2026-08-10'
-  expires_after: '2026-10-02'
+  verified_at: '2026-10-04'
+  expires_after: '2026-11-18'
   source_urls:
   - https://bitrise.io/pricing
   notes: []
