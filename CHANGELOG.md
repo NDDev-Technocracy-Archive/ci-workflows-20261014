@@ -7,6 +7,12 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- **Harden `private-security-bundle-free` submodule sync.** A symlink planted
+  at a declared submodule path on a reused runner would have redirected the
+  no-keys cleanup (`rm -rf "$path"/*` dereferences a symlinked directory)
+  and a keyed `submodule update` alike — links are now unlinked outright
+  rather than followed, and the temporary deploy-key directory is removed
+  by an EXIT trap instead of persisting until the job ends.
 - **Fix `private-security-bundle-free` scanning stale submodule worktrees.**
   On a reused self-hosted worktree the caller checkout leaves previously
   cloned submodules untouched (`git clean -ffdx` does not remove an

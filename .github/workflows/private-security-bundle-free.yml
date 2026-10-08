@@ -116,6 +116,18 @@ jobs:
           # at its recorded gitlink when the caller supplied a key for it,
           # emptied when it did not — never scanned at whatever revision the
           # last job happened to leave.
+          #
+          # A symlink at a declared path redirects everything below — the
+          # no-keys `rm -rf "$path"/*` would empty whatever the link targets,
+          # and a keyed `submodule update` would write through it. On a reused
+          # runner a hostile job could have planted one, so a symlink is
+          # unlinked outright rather than followed.
+          for path in $paths; do
+            if [ -L "$path" ]; then
+              rm -- "$path"
+              printf 'unlinked  %s (symlink at a declared submodule path)\n' "$path"
+            fi
+          done
           if [ -z "$SUBMODULE_DEPLOY_KEYS" ]; then
             for path in $paths; do
               if [ -n "$(ls -A "$path" 2>/dev/null || true)" ]; then
@@ -146,6 +158,10 @@ jobs:
           chmod 600 "$HOME/.ssh/known_hosts"
 
           keydir="$(mktemp -d "$RUNNER_TEMP/submodule-keys.XXXXXXXX")"
+          # Keys outlive their use only inside this step otherwise — drop them
+          # on any exit path rather than leave private key material in the
+          # shared runner's temp directory until the job ends.
+          trap 'rm -rf "$keydir"' EXIT
           declare -A keys=()
           while IFS= read -r line; do
             [ -n "$line" ] || continue
