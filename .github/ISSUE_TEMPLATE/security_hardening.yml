@@ -9,7 +9,7 @@ body:
         ## Not a vulnerability report
         If you have found an exploitable weakness, **stop** and report it
         privately via a
-        [GitHub Security Advisory](https://github.com/NDDev-OpenNetwork/ci-workflows/security/advisories/new)
+        [GitHub Security Advisory](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/security/advisories/new)
         (see SECURITY.md). This form is for **public, non-sensitive**
         defense-in-depth ideas — tightening permissions, egress policies, pin
         hygiene, attestation coverage, and similar.

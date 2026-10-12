@@ -58,7 +58,7 @@ release verification.
 
 ```bash
 scripts/render-public-promotion-record.sh \
-  X.Y.Z NDDev-OpenNetwork/ci-workflows <public-commit> \
+  X.Y.Z NDDev-Technocracy-Sandbox/ci-workflows <public-commit> \
   <generated-at> <expires-at> \
   <ci-run-url> <static-validators-job-url> <security-run-url> >promotion.json
 ```
@@ -128,7 +128,7 @@ jobs:
       id-token: write
       attestations: write
       artifact-metadata: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/release-supply-chain.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/release-supply-chain.yml@<full-sha>
     with:
       version: ${{ github.ref_name }}
       package_name: my-repo

@@ -10,7 +10,7 @@ concurrency:
 jobs:
   sql:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/sql-ci.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/sql-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       dialect: postgres

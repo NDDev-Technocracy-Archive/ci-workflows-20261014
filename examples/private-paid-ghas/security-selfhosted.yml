@@ -22,6 +22,6 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/nddev-security-bundle.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/nddev-security-bundle.yml@<sha>
     with:
       runner: private-ci

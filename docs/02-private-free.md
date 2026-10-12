@@ -77,16 +77,16 @@ permissions: {}
 jobs:
   secret-scan:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/secret-scan.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/secret-scan.yml@<full-sha>
   actionlint:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/actionlint.yml@<full-sha>
   zizmor:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<full-sha>
   validate:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<full-sha>
     with:
       command: "python3 scripts/validate_all.py"
 ```
@@ -161,7 +161,7 @@ artifacts** — the low-consumption validation lane. It runs a caller-provided `
 jobs:
   validate:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<full-sha>
     with:
       command: "ruff check . && pyright ."
       timeout_minutes: 10

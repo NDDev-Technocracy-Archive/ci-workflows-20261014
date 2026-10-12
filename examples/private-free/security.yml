@@ -18,7 +18,7 @@ concurrency:
 jobs:
   secret-scan:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/secret-scan.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/secret-scan.yml@<sha>
     with:
       runner: ubuntu-latest
       # Optional Docker-free lane for a Linux X64 worker. Omit this input to
@@ -26,17 +26,17 @@ jobs:
       execution_mode: binary
   actionlint:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/actionlint.yml@<sha>
     with:
       runner: ubuntu-latest
   zizmor:
     permissions: { contents: read }   # least privilege: no security-events: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<sha>
     with:
       runner: ubuntu-latest
   validate:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<sha>
     with:
       runner: ubuntu-latest
       command: "python3 scripts/validate_all.py"

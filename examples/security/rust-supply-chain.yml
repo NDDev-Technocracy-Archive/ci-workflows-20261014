@@ -16,7 +16,7 @@ permissions: {}
 jobs:
   supply-chain:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/rust-supply-chain.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/rust-supply-chain.yml@<sha>
     with:
       runner: ubuntu-latest
       # Optional: route only cargo-deny to a different caller-selected pool.

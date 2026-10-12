@@ -7,7 +7,7 @@ permissions: {}
 jobs:
   mutation:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/mutation-testing.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/mutation-testing.yml@<sha>
     with:
       runner: ubuntu-latest
       language: python

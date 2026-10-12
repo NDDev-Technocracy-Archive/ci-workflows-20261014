@@ -86,7 +86,7 @@ capability set is identical because the tier posture is identical.
 ## Trigger caveat: `pull_request` only, not `push`
 
 A reusable workflow owned by a **different account** (e.g. this library,
-`NDDev-OpenNetwork/ci-workflows`, called from a personal-account repository) does
+`NDDev-Technocracy-Sandbox/ci-workflows`, called from a personal-account repository) does
 **not** resolve jobs for `push` events to the default branch. The run is
 created but hangs in `pending` with zero jobs — indefinitely. Verified
 empirically on a personal-account consumer: the same workflow file succeeded
