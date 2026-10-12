@@ -7,7 +7,7 @@ private, fork, skipped-step, wrong-tool, and wrong-category runs are rejected.
 
 | Field | Contract |
 | --- | --- |
-| Repository | `NDDev-OpenNetwork/ci-workflows` |
+| Repository | `NDDev-Technocracy-OpenNetwork/ci-workflows` |
 | Default ref | `refs/heads/main` |
 | Caller | `.github/workflows/scorecard.yml` |
 | Reusable | `.github/workflows/public-scorecard.yml` |
@@ -26,12 +26,12 @@ private, fork, skipped-step, wrong-tool, and wrong-category runs are rejected.
 | `.github/workflows/public-scorecard-analysis.yml` | `conditional-public-oss` / `unsupported` | `github-hosted-standard` | `sarif-analysis-no-publication` | `actions:read, contents:read` | `step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1`; `first`; `audit` | public non-fork; push,schedule; actual-default-branch; ubuntu-latest | job-and-analysis-step-success, no-oidc-or-write-permission, no-artifact-or-sarif-upload-step, exact-caller-and-reusable-sha |
 | `.github/workflows/public-scorecard.yml` | `public-oss` / `unsupported` | `github-hosted-standard` | `scorecard-publication-and-sarif-upload` | `actions:read, contents:read, id-token:write, security-events:write` | `step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1`; `first`; `audit` | public non-fork; push,schedule; actual-default-branch; ubuntu-latest | analysis-and-upload-steps-success, exact-caller-and-reusable-sha, accepted-code-scanning-analysis-set, exact-ref-sha-workflow-tool-and-category-set |
 | Preserved failed attempt | `3` / `contract-test-failure` |
-| Failure receipt | [issue receipt](https://github.com/NDDev-OpenNetwork/ci-workflows/issues/128#issuecomment-5275483568) (base `d1d5376da29bb2c494498630e04c5454287575a4`) |
+| Failure receipt | [issue receipt](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/128#issuecomment-5275483568) (base `d1d5376da29bb2c494498630e04c5454287575a4`) |
 | Preserved recovery failure | `1` / `product-contract-failure` |
-| Recovery receipt | [issue receipt](https://github.com/NDDev-OpenNetwork/ci-workflows/issues/128#issuecomment-5275586641) / [run](https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31663872580) |
+| Recovery receipt | [issue receipt](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/128#issuecomment-5275586641) / [run](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31663872580) |
 | Runtime status | `accepted` |
 | Caller SHA | `de7128a2ce7ceaa3b85c9e73c08eb344171aec2a` |
-| Run / job | [run](https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31665252755) / [job](https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31665252755/job/94338313401) |
+| Run / job | [run](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31665252755) / [job](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31665252755/job/94338313401) |
 | Analysis IDs | `1611438989, 1611439032, 1611439071` |
 | Reusable digest | `5e47a29cbb5375589bfd61bc57b6db91d2ce9bebb98f56ae53d3d1d57746fc79` |
 

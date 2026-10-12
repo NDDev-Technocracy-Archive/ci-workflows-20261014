@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 
 Report suspected vulnerabilities privately via GitHub Security Advisories:
-https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/security/advisories/new
+https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/security/advisories/new
 
 Do not open public issues for security reports. You will receive an initial
 response as soon as reasonably possible.
@@ -11,7 +11,7 @@ response as soon as reasonably possible.
 ## Consuming these workflows securely
 
 - **Always pin by full commit SHA**, never by tag or branch:
-  `uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/<name>.yml@<40-char-sha>`.
+  `uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/<name>.yml@<40-char-sha>`.
   Tags are mutable; a full SHA is immutable. Dependabot can bump the pinned SHA.
 - Grant the calling job only the permissions the reusable declares it needs.
 - Use the dedicated private-free workflows for private repositories without

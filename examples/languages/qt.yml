@@ -10,7 +10,7 @@ concurrency:
 jobs:
   qt:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/qt-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/qt-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       # Use an exact Qt release for reproducible provisioning.

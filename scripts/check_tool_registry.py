@@ -31,7 +31,7 @@ from ci_workflows_tools._workflow_yaml import REPO_ROOT, load_yaml, workflow_fil
 
 TOOLS = REPO_ROOT / "catalog" / "tools.yml"
 # Calls to this repository's own reusables are not third-party tools.
-LOCAL_PREFIXES = ("./", "NDDev-Technocracy-Sandbox/ci-workflows/")
+LOCAL_PREFIXES = ("./", "NDDev-Technocracy-OpenNetwork/ci-workflows/")
 
 
 def catalog_action(tool_id: str) -> tuple[str, str]:

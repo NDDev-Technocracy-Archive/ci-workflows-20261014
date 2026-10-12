@@ -60,7 +60,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement through a private
-[GitHub Security Advisory](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/security/advisories/new),
+[GitHub Security Advisory](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/security/advisories/new),
 which reaches the maintainer [@rldyourmnd](https://github.com/rldyourmnd)
 privately. Do not report Code of Conduct concerns in public issues.
 All complaints will be reviewed and investigated promptly and fairly.

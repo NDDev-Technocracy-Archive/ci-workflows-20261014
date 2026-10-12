@@ -16,23 +16,23 @@ by full commit SHA. Here is where to get help.
 
 **Do not open a public issue for security problems.** Report suspected
 vulnerabilities through a private
-[GitHub Security Advisory](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/security/advisories/new).
+[GitHub Security Advisory](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/security/advisories/new).
 See [SECURITY.md](SECURITY.md) for the policy.
 
 ## Open an issue
 
 Public issues are disabled in favor of structured forms. Pick the one that fits:
 
-- **[Bug report](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/issues/new?template=bug_report.yml)**
+- **[Bug report](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=bug_report.yml)**
   — a reusable workflow misbehaves (wrong result, unexpected failure, bad
   permission scope).
-- **[Workflow request](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/issues/new?template=workflow_request.yml)**
+- **[Workflow request](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=workflow_request.yml)**
   — propose a new reusable workflow or capability, and the tier(s) it targets.
-- **[Tool update](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/issues/new?template=tool_update.yml)**
+- **[Tool update](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=tool_update.yml)**
   — a pinned action or tool has a new version worth adopting.
-- **[Docs gap](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/issues/new?template=docs_gap.yml)**
+- **[Docs gap](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=docs_gap.yml)**
   — documentation is missing, wrong, or outdated.
-- **[Security hardening](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/issues/new?template=security_hardening.yml)**
+- **[Security hardening](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=security_hardening.yml)**
   — a defense-in-depth improvement (not a vulnerability report).
 
 ## Contributing

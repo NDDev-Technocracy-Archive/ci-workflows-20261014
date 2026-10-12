@@ -7,6 +7,12 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+### Fixed
+
+- Follow the preserved repository identity at `NDDev-Technocracy-OpenNetwork/ci-workflows`
+  in reusable workflow guards, action pins, the catalog and caller examples. Workflow
+  permissions and runner contracts remain unchanged.
+
 - Reconcile active workflow/action references, identity checks, consumer examples
   and validators after the repository transfer to NDDev-Technocracy-Sandbox.
   Retain all executable dependency SHAs, permissions and immutable releases;
@@ -146,7 +152,7 @@ The project follows Semantic Versioning.
     `Can't find 'action.yml' ... under .../setup-systems/setup-systems/actions/tool-cache`.
 
   All five now name the repository explicitly and pin it:
-  `NDDev-OpenNetwork/ci-workflows/actions/<name>@96215b32`. That commit is
+  `NDDev-Technocracy-OpenNetwork/ci-workflows/actions/<name>@96215b32`. That commit is
   0.1.23, which is where both actions already live, so the pin is real and
   immutable. Vendoring the action was correct; addressing it with `./` was
   not, and the distinction is that a reusable workflow has no path to its own

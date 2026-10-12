@@ -44,7 +44,7 @@ EXPECTED_CATEGORY_CONTRACT = {
     ],
 }
 EXPECTED_CONSUMER = {
-    "repository": "NDDev-OpenNetwork/ci-workflows",
+    "repository": "NDDev-Technocracy-OpenNetwork/ci-workflows",
     "visibility": "public",
     "default_branch": "main",
     "caller_workflow": ".github/workflows/scorecard.yml",
@@ -121,7 +121,7 @@ EXPECTED_ATTEMPTS = [{
     "classification": "product-failure",
     "caller_sha": "1c5545457b36d6875a43695902fca66a02136a18",
     "run_id": 31662081168,
-    "run_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31662081168",
+    "run_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31662081168",
     "conclusion": "startup_failure",
     "reason": (
         "Nested scorecard job requested id-token: write while its "
@@ -132,7 +132,7 @@ EXPECTED_ATTEMPTS = [{
     "classification": "product-failure",
     "caller_sha": "d1d5376da29bb2c494498630e04c5454287575a4",
     "run_id": 31662731064,
-    "run_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31662731064",
+    "run_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31662731064",
     "conclusion": "startup_failure",
     "reason": (
         "GitHub preflight validated the skipped publish job before if and "
@@ -143,7 +143,7 @@ EXPECTED_ATTEMPTS = [{
     "classification": "contract-test-failure",
     "base_sha": "d1d5376da29bb2c494498630e04c5454287575a4",
     "issue_receipt": (
-        "https://github.com/NDDev-OpenNetwork/ci-workflows/issues/128"
+        "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/128"
         "#issuecomment-5275483568"
     ),
     "command": "python3 scripts/validate_all.py --tier core",
@@ -158,13 +158,13 @@ EXPECTED_RECOVERY_ATTEMPTS = [{
     "classification": "product-contract-failure",
     "caller_sha": "292bd5b4cb4b0df6848a204ffcb85367475b9f4e",
     "run_id": 31663872580,
-    "run_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/31663872580",
+    "run_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31663872580",
     "job_ids": [94334223400, 94334223449],
     "analysis_ids": [1611368002, 1611367941, 1611367893],
     "artifact_id": 9167197636,
     "artifact_sha256": "d0343578d2def1f7c6b4a0a139a381876f76b376fb0662e39ce9c80b06e3ea33",
     "issue_receipt": (
-        "https://github.com/NDDev-OpenNetwork/ci-workflows/issues/128"
+        "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/128"
         "#issuecomment-5275586641"
     ),
     "reason": (
@@ -408,7 +408,7 @@ def verify_proof(proof: Any, consumer: dict[str, Any]) -> list[str]:
 def _proof_selftests(consumer: dict[str, Any]) -> list[str]:
     base_analysis = {
         "id": 3,
-        "url": "https://api.github.com/repos/NDDev-OpenNetwork/ci-workflows/code-scanning/analyses/3",
+        "url": "https://api.github.com/repos/NDDev-Technocracy-OpenNetwork/ci-workflows/code-scanning/analyses/3",
         "analysis_key": ".github/workflows/scorecard.yml:scorecard",
         "ref": "refs/heads/main",
         "commit_sha": "a" * 40,
@@ -425,7 +425,7 @@ def _proof_selftests(consumer: dict[str, Any]) -> list[str]:
         analysis.update({
             "id": analysis_id,
             "url": (
-                "https://api.github.com/repos/NDDev-OpenNetwork/ci-workflows/"
+                "https://api.github.com/repos/NDDev-Technocracy-OpenNetwork/ci-workflows/"
                 f"code-scanning/analyses/{analysis_id}"
             ),
             "category": category,
@@ -435,10 +435,10 @@ def _proof_selftests(consumer: dict[str, Any]) -> list[str]:
         "repository": consumer["repository"], "caller_sha": "a" * 40,
         "caller_ref": "refs/heads/main", "caller_workflow": consumer["caller_workflow"],
         "event": "push", "run_id": 1,
-        "run_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/1",
-        "job_id": 2, "job_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/1/job/2",
+        "run_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/1",
+        "job_id": 2, "job_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/1/job/2",
         "analysis_only_job_id": 4,
-        "analysis_only_job_url": "https://github.com/NDDev-OpenNetwork/ci-workflows/actions/runs/1/job/4",
+        "analysis_only_job_url": "https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/1/job/4",
         "analysis_only_step": "success", "analysis_step": "success", "upload_step": "success",
         "reusable_sha": "a" * 40, "reusable_digest": "b" * 64,
         "reusable_workflow": consumer["reusable_workflow"],
