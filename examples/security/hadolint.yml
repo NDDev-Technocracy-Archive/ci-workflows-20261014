@@ -10,7 +10,7 @@ concurrency:
 jobs:
   hadolint:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/hadolint-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/hadolint-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       recursive: true

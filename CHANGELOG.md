@@ -7,6 +7,11 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- Reconcile active self-references, called-workflow identity and consumer examples
+  with the confirmed OpenNetwork repository transfer. Keep immutable dependency
+  SHAs and permissions unchanged. Restore recorded Scorecard identities from the
+  pre-transfer evidence instead of relabelling historical execution receipts.
+
 - Reconcile active workflow/action references, identity checks, consumer examples
   and validators after the repository transfer to NDDev-Technocracy-Sandbox.
   Retain all executable dependency SHAs, permissions and immutable releases;

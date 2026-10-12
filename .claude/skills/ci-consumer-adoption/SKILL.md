@@ -31,7 +31,7 @@ out first. Everything below runs in that checkout, not in yours:
 # Resolve the programme from that same revision. Do not check out main.
 LIBRARY_TAG="${LIBRARY_TAG:?set LIBRARY_TAG to the release tag you will pin}"
 git clone --depth 1 --branch "$LIBRARY_TAG" \
-    https://github.com/NDDev-Technocracy-Sandbox/ci-workflows.git /tmp/ci-workflows
+    https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows.git /tmp/ci-workflows
 cd /tmp/ci-workflows
 LIBRARY_SHA=$(git rev-parse HEAD)
 # Write $LIBRARY_SHA in every consumer `uses: ...@<sha>` line.
@@ -86,7 +86,7 @@ memory or from a skill.
 
 ## 2. Pin — to a released tag, by full SHA
 
-Reference reusables as `NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/<file>@<40-hex>`
+Reference reusables as `NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/<file>@<40-hex>`
 with a trailing comment naming the release. Pin to a commit that a release tag
 points at, not to whatever `main` happens to be: tags in this library are
 immutable and protected, `main` is not, and an estate pinned to arbitrary commits

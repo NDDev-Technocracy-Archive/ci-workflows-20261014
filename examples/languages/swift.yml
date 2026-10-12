@@ -11,7 +11,7 @@ concurrency:
 jobs:
   swift:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/swift-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/swift-ci.yml@<sha>
     with:
       runner: macos-latest
       swiftlint: true

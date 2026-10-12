@@ -15,6 +15,6 @@ jobs:
       id-token: write
       contents: read
       actions: read
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-scorecard-json.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/public-scorecard-json.yml@<sha>
     with:
       runner: ubuntu-latest

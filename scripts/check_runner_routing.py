@@ -20,7 +20,7 @@ BACKENDS = {"self-hosted", "github-hosted-standard"}
 VISIBILITIES = {"public", "private", "internal"}
 KNOWN_CAPABILITIES = {"container-runtime"}
 FLEET_CONTRACT = {
-    "repository": "NDDev-OpenNetwork/github-actions-light",
+    "repository": "NDDev-Technocracy-OpenNetwork/github-actions-light",
     "minimum_contract_version": 1,
     "worker_kind": "official-actions-runner",
     "ephemeral": False,
@@ -280,7 +280,7 @@ def check() -> list[str]:
     for job_id, (workflow, runner) in caller_expectations.items():
         job = jobs.get(job_id) or {}
         if not str(job.get("uses") or "").startswith(
-            f"NDDev-Technocracy-Sandbox/ci-workflows/{workflow}@"
+            f"NDDev-Technocracy-OpenNetwork/ci-workflows/{workflow}@"
         ) or (job.get("with") or {}).get("runner") != runner:
             problems.append(
                 f"{caller_path}: job {job_id!r} drifted from compiled route "

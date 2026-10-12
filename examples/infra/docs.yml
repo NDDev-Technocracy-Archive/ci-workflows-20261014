@@ -10,7 +10,7 @@ concurrency:
 jobs:
   docs:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/docs-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/docs-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       docs_glob: 'docs/**/*.md'
