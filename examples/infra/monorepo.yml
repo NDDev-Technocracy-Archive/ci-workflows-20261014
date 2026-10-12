@@ -14,7 +14,7 @@ concurrency:
 jobs:
   changes:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/monorepo-changed-paths.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/monorepo-changed-paths.yml@<sha>
     with:
       runner: ubuntu-latest
       filters: '{"backend":["backend/"],"frontend":["frontend/"]}'

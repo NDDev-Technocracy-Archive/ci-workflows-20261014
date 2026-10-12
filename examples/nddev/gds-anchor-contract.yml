@@ -19,6 +19,6 @@ concurrency:
 jobs:
   anchor-contract:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/gds-anchor-contract.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/gds-anchor-contract.yml@<sha>
     with:
       runner: ubuntu-latest

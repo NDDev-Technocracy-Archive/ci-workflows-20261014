@@ -7,6 +7,12 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- Reconcile active workflow/action references, identity checks, consumer examples
+  and validators after the repository transfer to NDDev-Technocracy-Sandbox.
+  Retain all executable dependency SHAs, permissions and immutable releases;
+  GitHub Actions does not follow repository redirects. Historical Scorecard
+  receipts retain their recorded repository identity.
+
 - Select the existing checksum-verified Gitleaks binary mode for this
   repository's own scan; history scope and scanner version remain unchanged.
 

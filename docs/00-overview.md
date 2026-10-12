@@ -85,7 +85,7 @@ jobs:
   actionlint:
     permissions:
       contents: read
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/actionlint.yml@<full-sha>
 ```
 
 The caller job must grant every permission the reusable job declares, or the run

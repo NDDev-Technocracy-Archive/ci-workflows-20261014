@@ -8,7 +8,7 @@ so under the repository control "require actions to be pinned to a full-length
 commit SHA", which `docs/00` and the consumer-adoption skill both recommend, the
 job is refused before a single step runs:
 
-    The action actions/cache@v5 is not allowed in NDDev-OpenNetwork/ci-workflows
+    The action actions/cache@v5 is not allowed in NDDev-Technocracy-Sandbox/ci-workflows
     because all actions must be pinned to a full-length commit SHA.
 
 That is how `dart-flutter-ci.yml` and `qt-ci.yml` turned out to be unusable in

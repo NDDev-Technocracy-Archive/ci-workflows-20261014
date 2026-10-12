@@ -10,7 +10,7 @@ concurrency:
 jobs:
   dotnet:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/dotnet-ci.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/dotnet-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       test_command: 'dotnet test'

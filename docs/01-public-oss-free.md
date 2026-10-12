@@ -51,7 +51,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/public-codeql.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-codeql.yml@<full-sha>
     with:
       languages: '["python","actions"]'
       queries: security-and-quality
@@ -98,7 +98,7 @@ jobs:
       id-token: write
       contents: read
       actions: read
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/public-scorecard.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-scorecard.yml@<full-sha>
     with:
       publish_results: true
       sarif_category: ossf-scorecard
@@ -130,7 +130,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/public-dependency-review.yml@<full-sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-dependency-review.yml@<full-sha>
     with:
       fail_on_severity: moderate
 ```

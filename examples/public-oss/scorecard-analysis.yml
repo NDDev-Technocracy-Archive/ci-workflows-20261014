@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       actions: read
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/public-scorecard-analysis.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-scorecard-analysis.yml@<sha>
     with:
       runner: ubuntu-latest
       sarif_category: ossf-scorecard

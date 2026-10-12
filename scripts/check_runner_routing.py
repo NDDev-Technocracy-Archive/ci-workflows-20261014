@@ -280,7 +280,7 @@ def check() -> list[str]:
     for job_id, (workflow, runner) in caller_expectations.items():
         job = jobs.get(job_id) or {}
         if not str(job.get("uses") or "").startswith(
-            f"NDDev-OpenNetwork/ci-workflows/{workflow}@"
+            f"NDDev-Technocracy-Sandbox/ci-workflows/{workflow}@"
         ) or (job.get("with") or {}).get("runner") != runner:
             problems.append(
                 f"{caller_path}: job {job_id!r} drifted from compiled route "

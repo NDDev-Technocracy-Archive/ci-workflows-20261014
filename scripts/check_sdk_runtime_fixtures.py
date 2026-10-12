@@ -504,7 +504,7 @@ def _negative_selftests(fixtures: dict[str, Any]) -> list[str]:
     android_tools = fixtures["android"]["toolchain"]
     qt_tools = fixtures["qt"]["toolchain"]
     flutter_version = str(flutter_tools["flutter_version"])
-    repository = "NDDev-OpenNetwork/ci-workflows"
+    repository = "NDDev-Technocracy-Sandbox/ci-workflows"
     envelope = {
         "callee_repository": repository, "callee_sha": "b" * 40,
         "caller_repository": repository, "caller_sha": "a" * 40,

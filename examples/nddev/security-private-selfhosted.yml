@@ -27,12 +27,12 @@ concurrency:
 jobs:
   security-bundle:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/private-security-bundle-free.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-security-bundle-free.yml@<sha>
     with:
       runner: nddev-linux
   validate:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<sha>
     with:
       runner: nddev-linux
       command: "python3 scripts/validate_all.py"

@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for the report. This is for **behavioral bugs** in a reusable
         workflow. Do **not** report security vulnerabilities here — use a private
-        [Security Advisory](https://github.com/NDDev-OpenNetwork/ci-workflows/security/advisories/new)
+        [Security Advisory](https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/security/advisories/new)
         (see SECURITY.md).
   - type: dropdown
     id: workflow
@@ -48,7 +48,7 @@ body:
     attributes:
       label: Pinned SHA / ref
       description: The full commit SHA (or ref) of ci-workflows you called.
-      placeholder: "e.g. NDDev-OpenNetwork/ci-workflows/....yml@<40-char-sha>"
+      placeholder: "e.g. NDDev-Technocracy-Sandbox/ci-workflows/....yml@<40-char-sha>"
     validations:
       required: true
   - type: textarea
@@ -60,7 +60,7 @@ body:
       placeholder: |
         jobs:
           secret-scan:
-            uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/secret-scan.yml@<sha>
+            uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/secret-scan.yml@<sha>
     validations:
       required: true
   - type: textarea
