@@ -264,7 +264,7 @@ def check() -> list[str]:
     cleanup_env = {
         "BRANCH": "runtime-evidence/benchmark-123-1",
         "CALLER_RESULT": "success",
-        "REPOSITORY": "NDDev-Technocracy-Sandbox/ci-workflows",
+        "REPOSITORY": "NDDev-Technocracy-OpenNetwork/ci-workflows",
     }
     for mode in ("missing", "present_then_missing"):
         if _run_with_fake_gh(cleanup_run, mode, cleanup_env).returncode != 0:
@@ -281,7 +281,7 @@ def check() -> list[str]:
         (_job(doc, "prepare-benchmark").get("steps") or [{}])[0].get("run", "")
     )
     prepare_benchmark_env = {
-        "REPOSITORY": "NDDev-Technocracy-Sandbox/ci-workflows",
+        "REPOSITORY": "NDDev-Technocracy-OpenNetwork/ci-workflows",
         "RUN_ID": "123",
         "RUN_ATTEMPT": "1",
     }
@@ -300,7 +300,7 @@ def check() -> list[str]:
     prepare_pr_run = str(
         (_job(doc, "prepare-pr-hygiene").get("steps") or [{}])[0].get("run", "")
     )
-    prepare_env = {"PR_NUMBER": "132", "REPOSITORY": "NDDev-Technocracy-Sandbox/ci-workflows"}
+    prepare_env = {"PR_NUMBER": "132", "REPOSITORY": "NDDev-Technocracy-OpenNetwork/ci-workflows"}
     absent = _run_with_fake_gh(prepare_pr_run, "label-absent", prepare_env)
     if absent.returncode != 0 or "had_label=false" not in absent.stdout:
         problems.append("PR preparation rejected an absent label")
@@ -318,7 +318,7 @@ def check() -> list[str]:
         "LABELER_ALL_LABELS": "docs, ci",
         "LABELER_NEW_LABELS": "ci",
         "PR_NUMBER": "132",
-        "REPOSITORY": "NDDev-Technocracy-Sandbox/ci-workflows",
+        "REPOSITORY": "NDDev-Technocracy-OpenNetwork/ci-workflows",
     }
     if _run_with_fake_gh(
         cleanup_pr_run, "label-lifecycle", cleanup_pr_env

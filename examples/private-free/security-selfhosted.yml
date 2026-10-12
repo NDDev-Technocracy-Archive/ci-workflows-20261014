@@ -20,7 +20,7 @@ concurrency:
 jobs:
   security-bundle:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-security-bundle-free.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/private-security-bundle-free.yml@<sha>
     with:
       runner: private-ci
       # Optional: keep a pre-existing inner job name when moving from the SARIF bundle.
@@ -33,7 +33,7 @@ jobs:
     #   submodule_deploy_keys: ${{ secrets.SUBMODULE_DEPLOY_KEYS }}
   validate:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<sha>
     with:
       runner: private-ci
       command: "python3 scripts/validate_all.py"

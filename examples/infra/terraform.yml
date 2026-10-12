@@ -10,7 +10,7 @@ concurrency:
 jobs:
   terraform:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/terraform-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/terraform-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       terraform_version: '1.13.0'   # pin for reproducible CI

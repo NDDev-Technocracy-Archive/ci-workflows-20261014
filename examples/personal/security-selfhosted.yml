@@ -36,16 +36,16 @@ concurrency:
 jobs:
   secret-scan:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/secret-scan.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/secret-scan.yml@<sha>
     with:
       runner: <label>
   actionlint:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/actionlint.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<sha>
     with:
       runner: <label>
   zizmor:
     permissions: { contents: read }   # least privilege: no security-events: write
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/zizmor-no-sarif.yml@<sha>
     with:
       runner: <label>

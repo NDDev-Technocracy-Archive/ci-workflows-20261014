@@ -4,7 +4,7 @@ name: public-codeql
 # Caller example:
 #   jobs:
 #     codeql:
-#       uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/public-codeql.yml@<full-sha>
+#       uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/public-codeql.yml@<full-sha>
 #       with:
 #         languages: '["python","actions"]'
 

@@ -8,7 +8,7 @@ permissions: {}
 jobs:
   benchmark:
     permissions: { contents: write }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/benchmark.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/benchmark.yml@<sha>
     with:
       runner: ubuntu-latest
       language: python

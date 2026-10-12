@@ -10,7 +10,7 @@ concurrency:
 jobs:
   dart-flutter:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/dart-flutter-ci.yml@<sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/dart-flutter-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       flutter_channel: stable

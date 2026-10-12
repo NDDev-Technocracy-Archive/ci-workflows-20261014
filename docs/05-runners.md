@@ -182,7 +182,7 @@ new revision decided, on a line that did not appear in its own diff.
 Write the label in the caller:
 
 ```yaml
-uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/cross-platform-smoke.yml@<sha>
+uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/cross-platform-smoke.yml@<sha>
 with:
   os_list: '["ubuntu-latest"]'
 ```
@@ -335,7 +335,7 @@ diff `inputs.runner.default` between the old and new commit before merging.
 jobs:
   validate:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/private-static.yml@<full-sha>
+    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/private-static.yml@<full-sha>
     with:
       runner: <your-self-hosted-label>
       command: "python3 scripts/validate_all.py"

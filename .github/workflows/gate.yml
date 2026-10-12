@@ -40,7 +40,7 @@ name: gate
 #   report:
 #     needs: [check, test, clippy, fmt]
 #     if: always()
-#     uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/gate.yml@<sha>
+#     uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/gate.yml@<sha>
 #     with:
 #       check_name: CI summary
 #       needs_json: ${{ toJSON(needs) }}

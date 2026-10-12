@@ -10,7 +10,7 @@ bundle:
   attestation_identity_digest: "sha256:e1b787c63de916f750e2cbcbf664967669024e1062964515f612b2c826c9e10d"
 
 projection:
-  input_digest: "sha256:4aff802086959c163a94f212e2bc166d7f515577bfce4fc84343f6b07fe6130f"
+  input_digest: "sha256:176979fca14c7fbe9aa4e41729e279efe961796cacb1f6dbf565ef76c80c92da"
   output_digest: "sha256:8e8a9aec59f3cb0c89cba52e37ab0015501f94aaa72d8e9dc3e03304c7244852"
   files:
     - path: ".gds/compiled-policy.json"

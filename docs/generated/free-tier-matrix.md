@@ -38,7 +38,7 @@ past its expiry, so a stale tier claim cannot silently mislead adopters.
 | `github-secret-scanning-private-org` | GitHub | Secret scanning / Secret Protection | private, internal | Team, Enterprise Cloud | add-on-gated | repository-feature | official | 2026-08-10 | 2026-11-06 |
 | `github-secret-scanning-public` | GitHub | Secret scanning | public | All current plans | included-feature | repository-feature | official | 2026-08-10 | 2026-11-06 |
 | `github-slsa-build-level-reusable` | GitHub | SLSA build level for artifact attestations | public, private, internal | Free, Pro, Team, Enterprise Cloud | included-feature | 3 slsa-v1-build-level/feature | official | 2026-08-14 | 2026-11-06 |
-| `gitlab-free-hosted` | GitLab | GitLab.com Free compute | public, private | Free | recurring-quota | 400 compute-minutes/month | official | 2026-09-13 | 2026-10-12 |
+| `gitlab-free-hosted` | GitLab | GitLab.com Free compute | public, private | Free | recurring-quota | 400 compute-minutes/month | official | 2026-10-13 | 2026-11-12 |
 | `gitlab-open-source-program` | GitLab | GitLab for Open Source | public | Ultimate for qualifying OSS | application-grant | 50000 compute-minutes/month | official | 2026-09-13 | 2026-10-15 |
 | `google-cloud-build-free` | Google Cloud | Cloud Build free tier | public, private | Google Cloud Free Tier | recurring-quota | 2500 e2-standard-2-build-minutes/month | official | 2026-08-10 | 2026-10-16 |
 | `harness-free` | Harness | Harness Cloud CI Free | public, private | Free | credit-quota | 2000 credits/month | conditional | 2026-09-19 | 2026-10-27 |
