@@ -4,7 +4,7 @@
 # self-hosted label has entered the queue.
 schema: nddev-ci-runner-map/v1
 fleet_contract:
-  repository: NDDev-OpenNetwork/github-actions-light
+  repository: NDDev-Technocracy-Sandbox/github-actions-light
   minimum_contract_version: 1
   worker_kind: official-actions-runner
   ephemeral: false

@@ -20,7 +20,7 @@ jobs:
     with:
       runner: ubuntu-latest
       version: ${{ github.ref_name }}
-      control_plane_repository: NDDev-OpenNetwork/nddev-harnesses
+      control_plane_repository: NDDev-Technocracy-Sandbox/nddev-harnesses
   publish:
     needs: promotion
     permissions: { contents: write, id-token: write, attestations: write, artifact-metadata: write }

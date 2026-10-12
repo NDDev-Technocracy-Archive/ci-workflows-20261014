@@ -1827,7 +1827,7 @@ capabilities:
       - "GitHub Actions enabled on the repository"
     risks:
       - "workflow_run runs with write scope on the caller repository; the reusable reads completed-run metadata only and never checks out or executes source-run code"
-      - "Vendored from NDDev-OpenNetwork/github-actions 6064b7d9 after that repository moved to NDDev-Archive/github-actions-garm on 2026-09-17; archived repositories cannot serve workflow_call, so callers pinned to the old path must repoint to this repository"
+      - "Vendored from NDDev-Technocracy-Sandbox/github-actions 6064b7d9 after that repository moved to NDDev-Archive/github-actions-garm on 2026-09-17; archived repositories cannot serve workflow_call, so callers pinned to the old path must repoint to this repository"
     deprecations: null
     last_verified: "2026-09-19"
     sources:
