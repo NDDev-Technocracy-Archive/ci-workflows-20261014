@@ -127,7 +127,7 @@ squash-only by design, so the correction is a repository-tier override —
 `policies/repositories/ci-workflows.yaml` in the control plane, in the same
 shape as the one `github-actions` already carries — plus this module claiming it
 in `.gds/repository.yaml`. Both have landed
-(NDDev-OpenNetwork/github-device-sync#150), and `gds compile policy` now resolves
+(NDDev-Technocracy-OpenNetwork/github-device-sync#150), and `gds compile policy` now resolves
 four sources and reports `allow_merge_commit: true`, matching the live API.
 
 Two properties of that system are worth carrying, because both cost a CI round

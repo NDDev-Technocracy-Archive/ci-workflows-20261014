@@ -7,6 +7,9 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- Use the owner's verified `danil@nddev.ai` contact address and regenerate
+  current public ownership projections without changing effective policy.
+
 - Reconcile active self-references, called-workflow identity and consumer examples
   with the confirmed OpenNetwork repository transfer. Keep immutable dependency
   SHAs and permissions unchanged. Restore recorded Scorecard identities from the
