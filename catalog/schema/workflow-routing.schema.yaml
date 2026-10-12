@@ -1,5 +1,5 @@
 $schema: https://json-schema.org/draft/2020-12/schema
-$id: https://github.com/NDDev-OpenNetwork/ci-workflows/catalog/schema/workflow-routing.schema.yaml
+$id: https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/catalog/schema/workflow-routing.schema.yaml
 title: ci-workflows reusable workflow routing contract
 type: object
 additionalProperties: false

@@ -10,7 +10,7 @@ concurrency:
 jobs:
   r:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/r-ci.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/r-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       lint: true

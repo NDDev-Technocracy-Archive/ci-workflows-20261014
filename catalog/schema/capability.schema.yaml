@@ -1,5 +1,5 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-$id: "https://github.com/NDDev-OpenNetwork/ci-workflows/catalog/schema/capability.schema.yaml"
+$id: "https://github.com/NDDev-Technocracy-Sandbox/ci-workflows/catalog/schema/capability.schema.yaml"
 title: ci-workflows capability catalog
 type: object
 required:

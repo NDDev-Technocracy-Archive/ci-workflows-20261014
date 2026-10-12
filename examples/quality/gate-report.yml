@@ -15,13 +15,13 @@ permissions: {}
 jobs:
   lint:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/actionlint.yml@<sha>
     with:
       runner: ubuntu-latest
 
   test:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/python-ci.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/python-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       test_command: "uv run pytest -q"
@@ -30,7 +30,7 @@ jobs:
     needs: [lint, test]
     if: always()
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/gate.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/gate.yml@<sha>
     with:
       runner: ubuntu-latest
       check_name: CI summary

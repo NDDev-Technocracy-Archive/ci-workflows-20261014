@@ -16,7 +16,7 @@ concurrency:
 jobs:
   publish:
     permissions: { contents: write, id-token: write, attestations: write, artifact-metadata: write }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/release-supply-chain.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/release-supply-chain.yml@<sha>
     with:
       runner: ubuntu-latest
       version: ${{ github.ref_name }}

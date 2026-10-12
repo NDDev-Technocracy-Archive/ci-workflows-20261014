@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/docker-build.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/docker-build.yml@<sha>
     with:
       runner: ubuntu-latest
       image: ghcr.io/acme/app

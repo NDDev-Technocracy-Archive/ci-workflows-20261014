@@ -13,7 +13,7 @@ concurrency:
 jobs:
   publish:
     permissions: { contents: write }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/release-supply-chain-free.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/release-supply-chain-free.yml@<sha>
     with:
       runner: ubuntu-latest
       version: ${{ github.ref_name }}

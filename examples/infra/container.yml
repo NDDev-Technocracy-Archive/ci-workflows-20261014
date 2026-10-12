@@ -10,7 +10,7 @@ concurrency:
 jobs:
   container:
     permissions: { contents: read }
-    uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/container-ci.yml@<sha>
+    uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/container-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       scan_type: fs
