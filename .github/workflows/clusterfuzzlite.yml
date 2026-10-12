@@ -6,7 +6,7 @@ name: clusterfuzzlite
 #
 # Usage (PR fuzzing):
 #   pr-fuzz:
-#     uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
+#     uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
 #     with:
 #       mode: code-change
 #       language: rust
@@ -16,7 +16,7 @@ name: clusterfuzzlite
 #
 # Usage (batch/scheduled):
 #   batch-fuzz:
-#     uses: NDDev-OpenNetwork/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
+#     uses: NDDev-Technocracy-Sandbox/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
 #     with:
 #       mode: batch
 #       language: rust
