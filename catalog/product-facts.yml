@@ -627,12 +627,13 @@ facts:
   overage: purchase additional compute or use own runners
   status: official
   source_authority: primary
-  verified_at: '2026-09-13'
-  expires_after: '2026-10-12'
+  verified_at: '2026-10-13'
+  expires_after: '2026-11-12'
   source_urls:
   - https://about.gitlab.com/pricing/
+  - https://docs.gitlab.com/ci/pipelines/compute_minutes/
   notes:
-  - "Re-verified 2026-09-13: the official pricing page still lists 400 compute minutes per month, 10 GiB adjustable storage, and five users per top-level group; creating a Free account needs no card, while shared-runner verification remains separate."
+  - "Re-verified 2026-10-13: the official pricing page still lists 400 compute minutes per month, 10 GiB adjustable storage, and five users per top-level group; creating a Free account needs no card, while shared-runner verification remains separate."
 - id: gitlab-open-source-program
   provider: GitLab
   product: GitLab for Open Source

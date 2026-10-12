@@ -87,7 +87,7 @@ def artifact_sarif(repo: str, run_id: int, consumer: dict[str, Any]) -> tuple[in
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--run-id", type=int, required=True)
-    parser.add_argument("--repo", default="NDDev-Technocracy-OpenNetwork/ci-workflows")
+    parser.add_argument("--repo", default="NDDev-OpenNetwork/ci-workflows")
     args = parser.parse_args()
 
     contract = strict_load(REPO_ROOT / "catalog" / "scorecard-evidence.yml")
