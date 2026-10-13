@@ -2,24 +2,25 @@ schema_version: 1
 
 repository:
   id: "repo_01M0EZ7TH5BMPKW742FYQT0776"
-  display_name: "ci-workflows"
+  display_name: ci-workflows-20261014
   roles: ["project", "module"]
-  lifecycle: "active"
-
+  lifecycle: archived
 provider:
   type: "github"
-  installation: "installation:github-nddev-technocracy-opennetwork"
+  installation: "installation:github-nddev-technocracy-archive"
   repository_id: 1335305145
-  owner: "NDDev-Technocracy-OpenNetwork"
-  name: "ci-workflows"
+  owner: NDDev-Technocracy-Archive
+  name: ci-workflows-20261014
   aliases:
+    - owner: NDDev-Technocracy-OpenNetwork
+      name: ci-workflows
     - owner: "NDDev-Technocracy-Sandbox"
       name: "ci-workflows"
     - owner: "NDDev-OpenNetwork"
       name: "ci-workflows"
 
 classification:
-  portfolios: ["portfolio:nddev-technocracy-opennetwork"]
+  portfolios: ["portfolio:nddev-technocracy-archive"]
   visibility_contract: "public"
   data_classification: "public"
 
