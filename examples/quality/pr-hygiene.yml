@@ -14,6 +14,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/pr-hygiene.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/pr-hygiene.yml@<sha>
     with:
       runner: ubuntu-latest

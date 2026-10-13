@@ -10,7 +10,7 @@ concurrency:
 jobs:
   python:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/python-ci.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/python-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       package_manager: uv

@@ -7,6 +7,11 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+### Changed
+
+- Follow the owner-approved Archive repository coordinate without changing runner contracts, token permissions or tool pins.
+
+
 - Activate the reviewed bounded downloader retry in all four private security
   bundle tool installs by advancing their independent action pins. Caller inputs,
   scanner versions, permissions and cache trust boundaries remain unchanged.

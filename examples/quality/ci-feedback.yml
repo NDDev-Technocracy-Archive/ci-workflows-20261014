@@ -14,7 +14,7 @@ jobs:
     permissions:
       actions: read # Read exact completed run and job metadata.
       issues: write # Publish bounded failure evidence in this repository.
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/ci-feedback.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/ci-feedback.yml@<sha>
     with:
       run-id: ${{ format('{0}', github.event.workflow_run.id) }}
       run-attempt: ${{ format('{0}', github.event.workflow_run.run_attempt) }}

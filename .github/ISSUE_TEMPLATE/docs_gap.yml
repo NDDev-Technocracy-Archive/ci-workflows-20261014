@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Help us keep the docs accurate. For usage questions, check the
-        [README](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows#readme) and
+        [README](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014#readme) and
         each workflow's header comment first.
   - type: dropdown
     id: doc

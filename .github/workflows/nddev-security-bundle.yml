@@ -53,7 +53,7 @@ jobs:
           BUNDLE_RUNNER_ARCH: ${{ runner.arch }}
         run: |
           set -euo pipefail
-          test "$WORKFLOW_REPOSITORY" = NDDev-Technocracy-OpenNetwork/ci-workflows
+          test "$WORKFLOW_REPOSITORY" = NDDev-Technocracy-Archive/ci-workflows-20261014
           [[ "$WORKFLOW_SHA" =~ ^[0-9a-f]{40}$ ]]
           test "$BUNDLE_RUNNER_OS" = Linux
           test "$BUNDLE_RUNNER_ARCH" = X64

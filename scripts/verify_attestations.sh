@@ -3,7 +3,7 @@
 #
 # Usage:
 #   scripts/verify_attestations.sh <archive> <owner/repo>
-#   scripts/verify_attestations.sh ci-workflows-0.2.0.tar.gz NDDev-Technocracy-OpenNetwork/ci-workflows
+#   scripts/verify_attestations.sh ci-workflows-0.2.0.tar.gz NDDev-Technocracy-Archive/ci-workflows-20261014
 #
 # Requires the GitHub CLI (`gh`) authenticated with read access to the repo.
 # Never prints or persists any credential; `gh` uses its own credential store.

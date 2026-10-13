@@ -9,7 +9,7 @@ permissions: {}
 jobs:
   benchmark:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/benchmark-compare.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/benchmark-compare.yml@<sha>
     with:
       runner: ubuntu-latest
       language: python

@@ -10,7 +10,7 @@ concurrency:
 jobs:
   kotlin-android:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/kotlin-android-ci.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/kotlin-android-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       # The checked wrapper drives the default `./gradlew build` contract.

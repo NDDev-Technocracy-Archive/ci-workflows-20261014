@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: NDDev-Technocracy-OpenNetwork/ci-workflows
+          repository: NDDev-Technocracy-Archive/ci-workflows-20261014
           ref: <sha>
           path: .ci-workflows
           persist-credentials: false
@@ -47,7 +47,7 @@ jobs:
     needs: evidence-plan
     if: contains(fromJSON(needs.evidence-plan.outputs.selected), 'actionlint')
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/actionlint.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/actionlint.yml@<sha>
     with: { runner: ubuntu-latest }
 ```
 

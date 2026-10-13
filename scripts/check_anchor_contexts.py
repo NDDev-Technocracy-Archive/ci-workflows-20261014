@@ -39,7 +39,7 @@ from ci_workflows_tools._strict_yaml import strict_load
 
 ROOT = Path(__file__).resolve().parent.parent
 ANCHOR = ROOT / ".gds/repository.yaml"
-REPOSITORY = "NDDev-Technocracy-OpenNetwork/ci-workflows"
+REPOSITORY = "NDDev-Technocracy-Archive/ci-workflows-20261014"
 BRANCH = "main"
 API = f"https://api.github.com/repos/{REPOSITORY}/rules/branches/{BRANCH}"
 TIMEOUT_SECONDS = 30

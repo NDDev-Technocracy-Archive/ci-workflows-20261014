@@ -17,7 +17,7 @@
 # no longer reaches -- or that has become digest-pinned upstream -- is also a
 # finding, so the list cannot quietly stop describing the graph.
 #
-# Reported from a consuming repository as NDDev-Technocracy-OpenNetwork/ci-workflows#173, which
+# Reported from a consuming repository as NDDev-Technocracy-Archive/ci-workflows-20261014#173, which
 # named two of the five. The walk found the rest once it could see the shape.
 schema_version: 1
 
