@@ -107,8 +107,10 @@ fi
 
 if [[ "$source" == upstream ]]; then
   rm -f -- "$candidate"
+  # Keep a retry available after a full 300s transfer timeout. The 600s
+  # retry window bounds when a new attempt starts; each attempt is still 300s.
   curl --proto '=https' --tlsv1.2 --fail --silent --show-error --location \
-    --retry 5 --retry-all-errors --retry-max-time 180 --connect-timeout 15 --max-time 300 \
+    --retry 2 --retry-all-errors --retry-max-time 600 --connect-timeout 15 --max-time 300 \
     --max-filesize "$max_bytes" \
     --output "$candidate" "$url"
   if ! verify_candidate; then
