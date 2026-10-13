@@ -307,6 +307,7 @@ capabilities:
       - "Submodule worktrees survive caller checkout on reused runners, so the workflow puts each declared path in a known state before scanning: pinned at its gitlink via the optional submodule_deploy_keys secret, or emptied when no key is supplied"
       - "Gitleaks evidence is fully redacted before the one-day artifact upload; a failed upload requires a complete bounded ZIP with SHA-256 and run identity in the run log"
       - "The tool-cache action is vendored at actions/tool-cache from NDDev-Archive/github-actions-garm 468af475; an archived dependency cannot receive fixes, so the live copy lives beside the workflow that runs it"
+      - "The workflow pins its vendored tool-cache action independently; adopting a new workflow revision activates a downloader fix only when that inner action pin also advances"
     deprecations: null
     last_verified: "2026-08-22"
     sources:

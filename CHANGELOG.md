@@ -7,6 +7,10 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- Activate the reviewed bounded downloader retry in all four private security
+  bundle tool installs by advancing their independent action pins. Caller inputs,
+  scanner versions, permissions and cache trust boundaries remain unchanged.
+
 - Keep a bounded upstream tool-download retry available after a full transfer
   timeout: retain the 300-second per-attempt limit, use a 600-second retry
   window and at most two retries. Preserve HTTPS, artifact size and SHA-256
