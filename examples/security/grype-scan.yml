@@ -10,7 +10,7 @@ concurrency:
 jobs:
   grype:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/grype-scan.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/grype-scan.yml@<sha>
     with:
       runner: ubuntu-latest
       severity_cutoff: high

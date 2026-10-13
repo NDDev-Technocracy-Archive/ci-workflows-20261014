@@ -15,22 +15,22 @@ license your contribution under [AGPL-3.0-or-later](LICENSE).
 ## Ways to contribute
 
 - **Propose a new reusable workflow or capability** — open a
-  [Workflow request](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=workflow_request.yml)
+  [Workflow request](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/new?template=workflow_request.yml)
   first. Describe the capability, which tier(s) it targets
   (public / private-free / private-paid), the underlying tools, the motivation,
   and the security considerations. Agreeing on scope and tier before code avoids
   wasted work.
 - **Report a bug** in an existing workflow — use the
-  [Bug report](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=bug_report.yml)
+  [Bug report](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/new?template=bug_report.yml)
   form.
 - **Flag a pinned tool/action update** — use the
-  [Tool update](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=tool_update.yml)
+  [Tool update](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/new?template=tool_update.yml)
   form (Dependabot already batches most of these).
 - **Propose a hardening improvement** — use the
-  [Security hardening](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=security_hardening.yml)
+  [Security hardening](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/new?template=security_hardening.yml)
   form. This is for defense-in-depth ideas, not vulnerabilities.
 - **Fix a docs gap** — use the
-  [Docs gap](https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/new?template=docs_gap.yml)
+  [Docs gap](https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/new?template=docs_gap.yml)
   form.
 
 ## Non-negotiables for every workflow PR

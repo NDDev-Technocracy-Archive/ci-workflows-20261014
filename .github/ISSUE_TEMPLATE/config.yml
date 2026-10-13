@@ -1,15 +1,15 @@
 blank_issues_enabled: false
 contact_links:
   - name: Report a security vulnerability (private)
-    url: https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/security/advisories/new
+    url: https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/security/advisories/new
     about: >-
       Never file vulnerabilities in public issues. Report privately via a GitHub
       Security Advisory. See SECURITY.md.
   - name: Documentation & usage
-    url: https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows#readme
+    url: https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014#readme
     about: >-
       Read the README capability tiers, per-workflow usage snippets, inputs, and
       the docs/ reference before opening an issue.
   - name: How to get help (SUPPORT)
-    url: https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/blob/main/SUPPORT.md
+    url: https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/blob/main/SUPPORT.md
     about: Where to ask questions and which issue form to use.

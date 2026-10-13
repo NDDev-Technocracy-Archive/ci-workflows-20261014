@@ -10,7 +10,7 @@ concurrency:
 jobs:
   java:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/java-ci.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/java-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       test_command: 'mvn -B verify'

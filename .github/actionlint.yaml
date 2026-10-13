@@ -19,7 +19,7 @@
 # commit and called from a different commit reported
 # `job.workflow_sha=39f043f016b382760a566f9a2a3189c47b8ef74b` (the callee) while
 # `github.sha=f40c3f0a63e7d29ffe07864615ae7bcd5e16f2b8` (the caller), in run
-# https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/actions/runs/31779014883.
+# https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/actions/runs/31779014883.
 #
 # The suppression names the three properties explicitly, so a typo such as
 # `job.workflow_shaa` is still reported. `check_actionlint_config.py` holds this

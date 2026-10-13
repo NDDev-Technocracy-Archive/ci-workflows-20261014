@@ -693,7 +693,7 @@ jobs:
   # block lasts, which is how an estate stops reporting the next real
   # regression. `catalog/runtime-coverage.yml` records both as `blocked` with the
   # barrier and the handoff, and `check_sdk_runtime_fixtures.py` fails if the two
-  # ever disagree. See https://github.com/NDDev-Technocracy-OpenNetwork/ci-workflows/issues/150
+  # ever disagree. See https://github.com/NDDev-Technocracy-Archive/ci-workflows-20261014/issues/150
   evidence:
     name: evidence summary (languages)
     needs:

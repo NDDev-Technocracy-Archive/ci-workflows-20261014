@@ -10,7 +10,7 @@ concurrency:
 jobs:
   go:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/go-ci.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/go-ci.yml@<sha>
     with:
       runner: ubuntu-latest
       # Required when validation inspects commit ancestry or pull-request merge parents.

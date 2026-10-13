@@ -16,7 +16,7 @@ concurrency:
 jobs:
   promotion:
     permissions: { contents: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/release-promotion-gate.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/release-promotion-gate.yml@<sha>
     with:
       runner: ubuntu-latest
       version: ${{ github.ref_name }}
@@ -24,7 +24,7 @@ jobs:
   publish:
     needs: promotion
     permissions: { contents: write, id-token: write, attestations: write, artifact-metadata: write }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/release-supply-chain.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/release-supply-chain.yml@<sha>
     with:
       runner: ubuntu-latest
       version: ${{ github.ref_name }}

@@ -10,7 +10,7 @@ name: rust-supply-chain
 #
 # Usage:
 #   deny:
-#     uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/rust-supply-chain.yml@<sha>
+#     uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/rust-supply-chain.yml@<sha>
 #     with:
 #       enable_deny: true
 #       enable_audit: true

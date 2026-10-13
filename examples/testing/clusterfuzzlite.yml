@@ -16,7 +16,7 @@ jobs:
   pr-fuzz:
     if: github.event_name == 'pull_request'
     permissions: { contents: read, security-events: write, actions: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/clusterfuzzlite.yml@<sha>
     with:
       runner: ubuntu-latest
       mode: code-change
@@ -26,7 +26,7 @@ jobs:
   batch-fuzz:
     if: github.event_name == 'schedule'
     permissions: { contents: read, security-events: write, actions: read }
-    uses: NDDev-Technocracy-OpenNetwork/ci-workflows/.github/workflows/clusterfuzzlite.yml@<sha>
+    uses: NDDev-Technocracy-Archive/ci-workflows-20261014/.github/workflows/clusterfuzzlite.yml@<sha>
     with:
       runner: ubuntu-latest
       mode: batch
