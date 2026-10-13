@@ -788,6 +788,10 @@
         "count": 2,
         "profile": "shell-fixture"
       },
+      "_probe_tool_cache_download": {
+        "count": 2,
+        "profile": "external-tool-fixture"
+      },
       "run": {
         "count": 1,
         "profile": "shell-fixture"

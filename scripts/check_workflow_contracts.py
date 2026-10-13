@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import http.server
 import io
 import json
 import os
@@ -22,6 +23,11 @@ import subprocess
 import tempfile
 import zipfile
 import shlex
+import shutil
+import signal
+import ssl
+import threading
+import time
 import sys
 from pathlib import Path
 
@@ -412,6 +418,7 @@ printf 'GIT_CONFIG_GLOBAL=%s\\n' "$isolated_config" >> "$GITHUB_ENV"
     problems += _job_defaults_pin_the_shell()
     problems += _started_runs_are_preserved()
     problems += _download_attempts_are_bounded()
+    problems += _probe_tool_cache_download(workflow_root.parents[1])
     return problems
 
 
@@ -424,7 +431,8 @@ DOWNLOAD_RETRY = re.compile(r"--retry[ =]([0-9]+)")
 def _download_attempts_are_bounded() -> list[str]:
     """curl's retry count excludes the initial request; two means three attempts."""
     problems: list[str] = []
-    paths = [*workflow_files(), *(Path("scripts").glob("*.sh"))]
+    paths = [*workflow_files(), *Path("scripts").glob("*.sh"),
+             *Path("actions").glob("*/tool-cache.sh")]
     for path in paths:
         for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             if line.lstrip().startswith("#"):
@@ -435,6 +443,153 @@ def _download_attempts_are_bounded() -> list[str]:
                         f"{path}:{lineno}: download retry count {match.group(1)} "
                         "exceeds two retries / three total attempts"
                     )
+    return problems
+
+
+
+def _probe_tool_cache_download(root: Path) -> list[str]:
+    """Real curl/TLS, with only the destination and time scale changed in the fixture."""
+    problems: list[str] = []
+    script = root / "actions/tool-cache/tool-cache.sh"
+    curl = shutil.which("curl")
+    if not curl:
+        return ["tool-cache HTTPS probe requires curl"]
+    payload = b"immutable tool fixture\n"
+    try:
+        with tempfile.TemporaryDirectory(prefix="tool-cache-probe-") as directory:
+            target = Path(directory)
+            cert, key = target / "cert.pem", target / "key.pem"
+            generated = subprocess.run(
+                ["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1",
+                 "-subj", "/CN=github.com", "-addext", "subjectAltName=DNS:github.com",
+                 "-keyout", str(key), "-out", str(cert)],
+                env=clean_environment(), capture_output=True, text=True, timeout=10)
+            if generated.returncode:
+                return ["tool-cache HTTPS fixture certificate generation failed"]
+            tls = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            tls.minimum_version = ssl.TLSVersion.TLSv1_2
+            tls.load_cert_chain(cert, key)
+            bindir = target / "bin"
+            bindir.mkdir()
+            wrapper = bindir / "curl"
+            wrapper.write_text("#!/usr/bin/env bash\nset -euo pipefail\n" + r'''
+args=()
+while (( $# )); do
+  case "$1" in
+    --max-time|--retry-max-time|--connect-timeout)
+      option=$1; value=$2; shift 2
+      [[ "$value" =~ ^[1-9][0-9]*$ ]]
+      value=$(( value / 100 )); (( value > 0 )) || value=1
+      args+=("$option" "$value") ;;
+    https://*)
+      [[ "$1" == 'https://github.com/fixture/tool.tar.gz' ]]
+      args+=("$1"); shift ;;
+    *) args+=("$1"); shift ;;
+  esac
+done
+printf '%s\0' "${args[@]}" > "$PROBE_ARGV"
+trust=()
+if [[ "$PROBE_MODE" != untrusted ]]; then trust=(--cacert "$PROBE_CERT"); fi
+exec "$PROBE_CURL" --disable "${args[@]}" --noproxy '*' \
+  --connect-to "github.com:443:127.0.0.1:$PROBE_PORT" "${trust[@]}"
+''')
+            wrapper.chmod(0o700)
+            for mode in ("stall-once", "stall-always", "checksum", "oversize", "untrusted"):
+                case = target / mode
+                case.mkdir()
+                output = case / "artifact"
+                stopped = threading.Event()
+                requests: list[str] = []
+
+                class Handler(http.server.BaseHTTPRequestHandler):
+                    def log_message(self, *_args):
+                        pass
+
+                    def do_GET(self):
+                        requests.append(self.path)
+                        body = b"wrong checksum\n" if mode == "checksum" else payload
+                        self.send_response(200)
+                        self.send_header("Content-Length", str(len(body)))
+                        self.send_header("Connection", "close")
+                        self.end_headers()
+                        try:
+                            if mode == "stall-always" or (mode == "stall-once" and len(requests) == 1):
+                                self.wfile.write(body[:1])
+                                self.wfile.flush()
+                                stopped.wait(12)
+                            else:
+                                self.wfile.write(body)
+                        except OSError:
+                            pass  # A bounded client timeout closes its own socket.
+
+                server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+                server.daemon_threads = True
+                server.socket = tls.wrap_socket(server.socket, server_side=True)
+                thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.05})
+                thread.start()
+                env = clean_environment({
+                    "PATH": str(bindir) + os.pathsep + os.environ["PATH"],
+                    "HOME": str(case), "RUNNER_TEMP": str(case), "GITHUB_OUTPUT": str(case / "outputs"),
+                    "NDDEV_TOOL_CACHE_URL": "https://github.com/fixture/tool.tar.gz",
+                    "NDDEV_TOOL_CACHE_SHA256": hashlib.sha256(payload).hexdigest(),
+                    "NDDEV_TOOL_CACHE_OUTPUT": str(output),
+                    "NDDEV_TOOL_CACHE_MAX_BYTES": "8" if mode == "oversize" else "64",
+                    "PROBE_CURL": curl, "PROBE_PORT": str(server.server_port),
+                    "PROBE_CERT": str(cert), "PROBE_MODE": mode, "PROBE_ARGV": str(case / "argv"),
+                })
+                # Exercise upstream only; never consume ambient cache credentials.
+                for name in tuple(env):
+                    if name.startswith(("AWS_", "SCCACHE_", "NDDEV_CACHE_")):
+                        del env[name]
+                started = time.monotonic()
+                try:
+                    process = subprocess.Popen(["bash", str(script)], cwd=root, env=env,
+                                               stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                               text=True, start_new_session=True)
+                    try:
+                        stdout, stderr = process.communicate(timeout=15)
+                    except subprocess.TimeoutExpired:
+                        # Only this fixture's process group, including its curl child.
+                        os.killpg(process.pid, signal.SIGKILL)
+                        process.communicate()
+                        raise
+                    result = subprocess.CompletedProcess(process.args, process.returncode, stdout, stderr)
+                    elapsed = time.monotonic() - started
+                finally:
+                    stopped.set()
+                    server.shutdown()
+                    thread.join(timeout=2)
+                    server.server_close()
+                print(f"tool-cache HTTPS {mode}: exit={result.returncode}, "
+                      f"requests={len(requests)}, elapsed={elapsed:.2f}s")
+                if mode == "stall-once":
+                    if result.returncode or len(requests) != 2 or not output.exists() or output.read_bytes() != payload:
+                        problems.append("tool-cache: a timed-out first download must retry and install only verified bytes")
+                    outputs = (case / "outputs").read_text() if (case / "outputs").exists() else ""
+                    if "source=upstream\n" not in outputs or f"bytes={len(payload)}\n" not in outputs:
+                        problems.append("tool-cache: recovered download lacks verified output evidence")
+                elif result.returncode == 0 or output.exists() or (case / "outputs").exists():
+                    problems.append(f"tool-cache: {mode} must fail without installing or reporting success")
+                if mode == "stall-always" and (result.returncode != 28 or not 2 <= len(requests) <= 3 or elapsed > 12):
+                    problems.append("tool-cache: permanent stall must exhaust bounded attempts and retain timeout failure")
+                rejection = {"checksum": 1, "oversize": 63, "untrusted": 60}.get(mode)
+                if rejection is not None and result.returncode != rejection:
+                    problems.append(f"tool-cache: {mode} failed for the wrong reason ({result.returncode})")
+                if mode == "untrusted" and requests:
+                    problems.append("tool-cache: untrusted TLS must fail before any HTTP request")
+                args = (case / "argv").read_bytes().split(b"\0")[:-1]
+                for flag, value in ((b"--proto", b"=https"), (b"--max-filesize", env["NDDEV_TOOL_CACHE_MAX_BYTES"].encode())):
+                    if flag not in args or args[args.index(flag) + 1] != value:
+                        problems.append(f"tool-cache: fixture lost {flag.decode()} protection")
+                for flag, maximum in ((b"--max-time", 3), (b"--retry-max-time", 6), (b"--retry", 2)):
+                    if flag not in args or not 0 < int(args[args.index(flag) + 1]) <= maximum:
+                        problems.append(f"tool-cache: {flag.decode()} must retain its finite upper bound")
+                if b"--tlsv1.2" not in args or b"--insecure" in args or b"-k" in args:
+                    problems.append("tool-cache: upstream TLS verification must stay enabled")
+                if list(case.glob("nddev-tool-cache.*")):
+                    problems.append("tool-cache: failed or successful attempt left its partial scratch artifact")
+    except (OSError, ValueError, subprocess.TimeoutExpired) as error:
+        problems.append(f"tool-cache HTTPS probe failed: {error}")
     return problems
 
 

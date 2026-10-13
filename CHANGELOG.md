@@ -7,6 +7,12 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+- Keep a bounded upstream tool-download retry available after a full transfer
+  timeout: retain the 300-second per-attempt limit, use a 600-second retry
+  window and at most two retries. Preserve HTTPS, artifact size and SHA-256
+  verification; exercise recovery, permanent stalls, checksum/size rejection
+  and untrusted TLS with a local HTTPS fixture in the workflow contract checks.
+
 - Use the owner's verified `danil@nddev.ai` contact address and regenerate
   current public ownership projections without changing effective policy.
 
