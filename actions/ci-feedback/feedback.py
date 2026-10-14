@@ -5,6 +5,8 @@ import datetime as dt
 import json
 import os
 import re
+import socket
+import ssl
 import sys
 import urllib.error
 import urllib.parse
@@ -17,6 +19,51 @@ ACTIVE_STATUSES = {"queued", "in_progress", "requested", "waiting", "pending"}
 MAX_PAGES = 10
 MAX_RESPONSE = 4 * 1024 * 1024
 GITHUB_ACTIONS_BOT_ID = 41898282
+FAILURE_CODES = frozenset({
+    "api_redirect", "api_http", "api_response_size", "api_response_json",
+    "job_status", "issue_inventory", "issue_limit", "job_inventory",
+    "job_inventory_changed", "job_identity", "job_attempt", "job_source",
+    "job_page", "job_limit", "run_identity", "run_status", "run_conclusion",
+    "source_commit", "run_created_at", "evidence_size", "server_unsupported",
+})
+
+
+class FeedbackFailure(RuntimeError):
+    """A local, allowlisted cause; no remote text belongs in its diagnostic."""
+
+    def __init__(self, code: str, *, http_status: int | None = None):
+        if code not in FAILURE_CODES:
+            raise ValueError("unknown feedback failure code")
+        self.code = code
+        self.http_status = (http_status if type(http_status) is int
+                            and 400 <= http_status <= 599 else None)
+        super().__init__(code)
+
+
+def failure_diagnostic(error: Exception) -> dict:
+    if isinstance(error, FeedbackFailure):
+        result = {"error_code": error.code if error.code in FAILURE_CODES else "unknown"}
+        if type(error.http_status) is int and 400 <= error.http_status <= 599:
+            result["http_status"] = error.http_status
+        return result
+    reason = error.reason if isinstance(error, urllib.error.URLError) else error
+    if isinstance(reason, ssl.SSLError):
+        code = "transport_tls"
+    elif isinstance(reason, TimeoutError):
+        code = "transport_timeout"
+    elif isinstance(reason, socket.gaierror):
+        code = "transport_dns"
+    elif isinstance(error, urllib.error.URLError):
+        code = "transport_failure"
+    elif isinstance(error, KeyError):
+        code = "required_field_missing"
+    elif isinstance(error, ValueError):
+        code = "invalid_input"
+    elif isinstance(error, OSError):
+        code = "io_failure"
+    else:
+        code = "unknown"
+    return {"error_code": code}
 
 
 def positive_id(value: object) -> int:
@@ -35,7 +82,7 @@ def repository_name(value: str) -> str:
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        raise RuntimeError("GitHub API redirect refused")
+        raise FeedbackFailure("api_redirect")
 
 
 class GitHubAPI:
@@ -66,10 +113,13 @@ class GitHubAPI:
                 raw = response.read(MAX_RESPONSE + 1)
         except urllib.error.HTTPError as error:
             # Do not echo response bodies, credentials or arbitrary remote text.
-            raise RuntimeError(f"GitHub API request failed with HTTP {error.code}") from None
+            raise FeedbackFailure("api_http", http_status=error.code) from None
         if len(raw) > MAX_RESPONSE:
-            raise RuntimeError("GitHub API response exceeds the evidence bound")
-        return json.loads(raw)
+            raise FeedbackFailure("api_response_size")
+        try:
+            return json.loads(raw)
+        except ValueError:
+            raise FeedbackFailure("api_response_json") from None
 
 
 def publisher_account_type(value: str) -> str:
@@ -92,7 +142,7 @@ def failed_jobs(repository: str, run_id: int, jobs: list[dict], *, active: bool 
     for job in jobs:
         if job.get("conclusion") in FAILURES:
             if active and job.get("status") != "completed":
-                raise RuntimeError("an early failure requires a completed job")
+                raise FeedbackFailure("job_status")
             identity = positive_id(job["id"])
             failed.append({
                 "id": identity,
@@ -113,17 +163,17 @@ def find_published(api, prefix: str, marker: str, created: dt.datetime, publishe
         })
         issues = api.request(f"{prefix}/issues?{query}")
         if not isinstance(issues, list):
-            raise RuntimeError("invalid issue inventory")
+            raise FeedbackFailure("issue_inventory")
         for issue in issues:
             if not isinstance(issue, dict):
-                raise RuntimeError("invalid issue row")
+                raise FeedbackFailure("issue_inventory")
             body = issue.get("body")
             if ("pull_request" not in issue and trusted_publisher(issue, publisher_id, publisher_type)
                     and isinstance(body, str) and body.startswith(marker + "\n")):
                 return {"status": "already-published", "issue_number": positive_id(issue["number"])}
         if len(issues) < 100:
             return None
-    raise RuntimeError("issue inventory exceeds the deduplication bound")
+    raise FeedbackFailure("issue_limit")
 
 
 def read_jobs(api, prefix: str, run_id: int, attempt: int, *, head_sha: str = "") -> list[dict]:
@@ -135,27 +185,27 @@ def read_jobs(api, prefix: str, run_id: int, attempt: int, *, head_sha: str = ""
         batch = result.get("jobs")
         count = result.get("total_count")
         if not isinstance(batch, list) or len(batch) > 100 or type(count) is not int or count < 0:
-            raise RuntimeError("invalid jobs page")
+            raise FeedbackFailure("job_inventory")
         if total is not None and total != count:
-            raise RuntimeError("job inventory changed during observation")
+            raise FeedbackFailure("job_inventory_changed")
         total = count
         for job in batch:
             if not isinstance(job, dict):
-                raise RuntimeError("invalid job row")
+                raise FeedbackFailure("job_inventory")
             identity = positive_id(job["id"])
             if identity in ids or positive_id(job["run_id"]) != run_id:
-                raise RuntimeError("duplicate or foreign job identity")
+                raise FeedbackFailure("job_identity")
             if "run_attempt" in job and positive_id(job["run_attempt"]) != attempt:
-                raise RuntimeError("job belongs to another attempt")
+                raise FeedbackFailure("job_attempt")
             if "head_sha" in job and head_sha and job["head_sha"] != head_sha:
-                raise RuntimeError("job belongs to another source commit")
+                raise FeedbackFailure("job_source")
             ids.add(identity)
             jobs.append(job)
         if len(jobs) == total:
             return jobs
         if not batch or len(jobs) > total:
-            raise RuntimeError("incomplete jobs page")
-    raise RuntimeError("jobs exceed the bounded pagination window")
+            raise FeedbackFailure("job_page")
+    raise FeedbackFailure("job_limit")
 
 
 def find_job_publications(api, prefix, repository_id, run_id, attempt, sha, created,
@@ -173,10 +223,10 @@ def find_job_publications(api, prefix, repository_id, run_id, attempt, sha, crea
             "sort": "created", "direction": "desc", "per_page": 100, "page": page})
         issues = api.request(f"{prefix}/issues?{query}")
         if not isinstance(issues, list) or len(issues) > 100:
-            raise RuntimeError("invalid issue inventory")
+            raise FeedbackFailure("issue_inventory")
         for issue in issues:
             if not isinstance(issue, dict):
-                raise RuntimeError("invalid issue row")
+                raise FeedbackFailure("issue_inventory")
             body = issue.get("body")
             if ("pull_request" in issue or not trusted_publisher(issue, publisher_id, publisher_type)
                     or not isinstance(body, str)):
@@ -205,7 +255,7 @@ def find_job_publications(api, prefix, repository_id, run_id, attempt, sha, crea
                 covered[job_id] = min(number, covered.get(job_id, number))
         if len(issues) < 100:
             return covered
-    raise RuntimeError("issue inventory exceeds the deduplication bound")
+    raise FeedbackFailure("issue_limit")
 
 
 def publish(api, repository: str, repository_id: int, run_id: int, attempt: int,
@@ -228,20 +278,20 @@ def publish(api, repository: str, repository_id: int, run_id: int, attempt: int,
     if (positive_id(run.get("id")) != run_id or positive_id(run.get("run_attempt")) != attempt
             or positive_id(actual_repo.get("id")) != repository_id
             or actual_repo.get("full_name", "").lower() != repository.lower()):
-        raise RuntimeError("run attempt does not match the caller repository")
+        raise FeedbackFailure("run_identity")
     status = run.get("status")
     if not isinstance(status, str):
-        raise RuntimeError("invalid run status")
+        raise FeedbackFailure("run_status")
     active = status in ACTIVE_STATUSES
     if status != "completed" and not (active and allow_in_progress):
-        raise RuntimeError("run status is not eligible for this observation mode")
+        raise FeedbackFailure("run_status")
     conclusion = run.get("conclusion")
     if conclusion is not None and not isinstance(conclusion, str):
-        raise RuntimeError("invalid run conclusion")
+        raise FeedbackFailure("run_conclusion")
     if active and conclusion is not None:
-        raise RuntimeError("an unfinished run cannot have a final conclusion")
+        raise FeedbackFailure("run_conclusion")
     if not active and conclusion not in FAILURES | NON_FAILURES:
-        raise RuntimeError("unknown run conclusion")
+        raise FeedbackFailure("run_conclusion")
 
     def outcome(result):
         if allow_in_progress:
@@ -251,10 +301,10 @@ def publish(api, repository: str, repository_id: int, run_id: int, attempt: int,
 
     sha = run.get("head_sha", "")
     if not re.fullmatch(r"[0-9a-f]{40}", sha):
-        raise RuntimeError("invalid source commit")
+        raise FeedbackFailure("source_commit")
     created = dt.datetime.fromisoformat(run["created_at"].replace("Z", "+00:00"))
     if created.tzinfo is None:
-        raise RuntimeError("run creation time lacks timezone")
+        raise FeedbackFailure("run_created_at")
     workflow_id = positive_id(run["workflow_id"])
     marker = f"<!-- ci-feedback:v1:{repository_id}:{run_id}:{attempt} -->"
     if not active and conclusion in CLEAN_CONCLUSIONS:
@@ -296,7 +346,7 @@ def publish(api, repository: str, repository_id: int, run_id: int, attempt: int,
             "A cancelled or superseded run is not a passing test. Close only with a verified repair or an explicit supersession disposition.\n\n"
             "```json\n" + json.dumps(evidence, indent=2, sort_keys=True) + "\n```\n")
         if len(body.encode()) > 60000:
-            raise RuntimeError("issue evidence exceeds the publication bound")
+            raise FeedbackFailure("evidence_size")
         payload = {"title": title, "body": body}
         try:
             issue = api.request(prefix + "/issues", payload)
@@ -340,7 +390,7 @@ def early_mode(value: str) -> bool:
 
 def main() -> int:
     if os.environ.get("GITHUB_SERVER_URL") != "https://github.com":
-        raise RuntimeError("this action supports GitHub.com only")
+        raise FeedbackFailure("server_unsupported")
     repository = repository_name(os.environ["GITHUB_REPOSITORY"])
     api = GitHubAPI(repository, os.environ["GH_TOKEN"])
     result = publish(api, repository, positive_id(os.environ["GITHUB_REPOSITORY_ID"]),
@@ -352,10 +402,16 @@ def main() -> int:
     return 0
 
 
-if __name__ == "__main__":
+def cli() -> int:
     try:
-        raise SystemExit(main())
-    except (KeyError, ValueError, RuntimeError, OSError) as error:
-        # Class only: errors may originate in remote or environment input.
-        print(f"CI feedback delivery failed ({type(error).__name__}); inspect permissions and exact run identity.", file=sys.stderr)
-        raise SystemExit(1)
+        return main()
+    except Exception as error:
+        # Only fixed codes and a bounded numeric status leave this boundary.
+        # Exception text, class names, URLs, headers and bodies can be hostile.
+        print(json.dumps({"status": "failed", **failure_diagnostic(error)}, sort_keys=True),
+              file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(cli())

@@ -87,6 +87,8 @@ jobs:
         run: |
           .venv/bin/python -I -B scripts/check_python_syntax.py
           .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch validate_all.py -- --tier core
+      - name: Check CI feedback failure diagnostics
+        run: .venv/bin/python -I -B -m unittest discover -s actions/ci-feedback -p test_feedback.py -v
 
   # Blocking, but scoped: a product fact is checked for expiry only when the
   # changed capability declares it, and a runtime-coverage waiver only when its

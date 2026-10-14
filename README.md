@@ -391,6 +391,15 @@ as unassigned issues in this repository. It uses a pinned publisher and records
 actual job conclusions and attempt identity without executing source-run code.
 Issue publication does not launch a repair agent or authorize deployment.
 
+The reporter exits unsuccessfully with a bounded JSON diagnostic when delivery
+fails. `error_code` identifies a local refusal, response bound or transport
+class; API errors also retain numeric `http_status`. A 403 can mean a rate
+limit or an access refusal, and a 404 does not prove a private resource is
+absent. Unknown exceptions remain `unknown`. Response bodies, URLs, headers,
+tokens, exception text and arbitrary class names are never diagnostic fields.
+The diagnostic adds no retries or permissions; the existing reconciliation
+after an ambiguous issue creation still checks the exact publication marker.
+
 Unreleased dependencies use a `commit:<full SHA>` comment matching the immutable
 ref and catalog version. Stable releases retain their release-version comments;
 the validator rejects a shortened or mismatched development identity.
