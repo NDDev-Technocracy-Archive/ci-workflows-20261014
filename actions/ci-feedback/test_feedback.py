@@ -8,7 +8,7 @@ from pathlib import Path
 import socket
 import ssl
 import unittest
-from unittest import mock
+import unittest.mock as mock
 import urllib.error
 
 
