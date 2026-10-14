@@ -9,6 +9,11 @@ The project follows Semantic Versioning.
 
 ### Changed
 
+- Report allowlisted CI feedback failure codes and HTTP status without exposing
+  remote response text, credentials, URLs or arbitrary exception messages.
+  Preserve bounded requests, failed exit status and ambiguous-write reconciliation;
+  exercise HTTP, transport, invalid-response, identity and privacy boundaries in CI.
+
 - Follow the owner-approved Archive repository coordinate without changing runner contracts, token permissions or tool pins.
 
 
