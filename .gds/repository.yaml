@@ -62,6 +62,7 @@ agent:
   serena: {enabled: false, provenance_required: false}
 
 module:
+  development: "standalone"
   contract: "public"
   # GitHub reusable workflows execute remotely; GDS models this as runtime-service.
   consumption: ["git-submodule", "runtime-service"]
