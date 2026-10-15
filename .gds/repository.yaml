@@ -4,7 +4,7 @@ repository:
   id: "repo_01M0EZ7TH5BMPKW742FYQT0776"
   display_name: ci-workflows-20261014
   roles: ["project", "module"]
-  lifecycle: archived
+  lifecycle: active
 provider:
   type: "github"
   installation: "installation:github-nddev-technocracy-archive"
