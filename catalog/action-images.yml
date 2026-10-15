@@ -33,7 +33,7 @@ images:
       published-evidence path for the public tier, so a substituted image would
       change what the SARIF and JSON attest to.
   - action: bridgecrewio/checkov-action
-    image: docker://ghcr.io/bridgecrewio/checkov:3.3.19
+    image: docker://ghcr.io/bridgecrewio/checkov:3.3.26
     used_by:
       - .github/workflows/iac-scan.yml
     reason: >-
