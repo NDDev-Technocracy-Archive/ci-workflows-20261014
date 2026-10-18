@@ -375,6 +375,19 @@ jobs:
             --bad-input target=tests/fixtures/negative/zizmor/injection.yml \
             --good-input target=tests/fixtures/zizmor-clean/.github/workflows/clean.yml
 
+      # SARIF output exits 0 whatever zizmor finds; the step must fail on the results.
+      - name: zizmor (SARIF) must reject a template injection
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch negative_gate_probe.py -- \
+            --workflow .github/workflows/zizmor-sarif.yml --job zizmor \
+            --step 'Run zizmor (SARIF)' \
+            --bad . --good . \
+            --context-env github.token=GITHUB_TOKEN \
+            --bad-input target=tests/fixtures/negative/zizmor/injection.yml \
+            --good-input target=tests/fixtures/zizmor-clean/.github/workflows/clean.yml
+
   dockerfile-gate:
     name: hadolint refuses an unpinned image
     runs-on: ubuntu-latest

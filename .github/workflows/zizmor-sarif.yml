@@ -80,6 +80,13 @@ jobs:
             --min-severity "${ZIZMOR_MIN_SEVERITY}" \
             --format sarif \
             "${ZIZMOR_TARGET}" > zizmor.sarif
+          # With --format sarif zizmor exits 0 whatever it finds: the reported results
+          # fail this step, so the enforcement below runs after the upload.
+          findings=$(jq '[.runs[].results[]? | select((.suppressions // []) == [])] | length' zizmor.sarif)
+          if (( findings > 0 )); then
+            echo "zizmor reported ${findings} finding(s)." >&2
+            exit 1
+          fi
 
       - name: Upload SARIF to code scanning
         uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
