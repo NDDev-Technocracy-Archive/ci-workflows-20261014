@@ -9,6 +9,15 @@ The project follows Semantic Versioning.
 
 ### Fixed
 
+- Make zizmor findings fail the gate in both security bundles and in
+  `zizmor-sarif.yml`. With `--format sarif` zizmor exits 0 whatever it finds, so
+  `run_private_security_bundle.sh` passed every consumer whatever the SARIF held
+  and `zizmor-sarif.yml`'s enforcement step never ran. The reported results now
+  decide: the bundle prints each finding (rule, file:line) and fails; the SARIF
+  workflow uploads first and then fails. `ci` proves the SARIF path refuses a
+  template injection, like the plain path. Consumers moving to this pin must
+  clear or deliberately ignore their pedantic low findings first.
+
 - Re-verify the three product facts whose verification expired (GitLab for Open
   Source, Cloud Build and CodeBuild free tiers) against their sources; the GitLab
   pricing FAQ now names the open-source grant's period itself (50K compute

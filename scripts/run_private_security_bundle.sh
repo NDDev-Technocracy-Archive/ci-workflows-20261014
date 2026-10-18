@@ -96,7 +96,17 @@ run_gate() {
 
 run_zizmor() {
   uvx "zizmor@${zizmor_version}" --persona pedantic --min-severity low \
-    --format sarif "$zizmor_target" > "$zizmor_sarif"
+    --format sarif "$zizmor_target" > "$zizmor_sarif" || return
+  # With --format sarif zizmor exits 0 whatever it finds; the reported results decide
+  # this gate. Ignored findings are not reported; a suppressed one would not count.
+  local findings
+  findings=$(jq -r '.runs[].results[]? | select((.suppressions // []) == [])
+    | "\(.ruleId) \(.locations[0].physicalLocation.artifactLocation.uri):\(.locations[0].physicalLocation.region.startLine)"' \
+    "$zizmor_sarif") || return
+  if [[ -n "$findings" ]]; then
+    printf 'zizmor findings:\n%s\n' "$findings"
+    return 1
+  fi
 }
 
 run_actionlint() {
