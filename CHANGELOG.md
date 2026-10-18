@@ -7,6 +7,13 @@ The project follows Semantic Versioning.
 
 ## [Unreleased]
 
+### Fixed
+
+- Name the tool-cache action's own commit in the private security bundle's four
+  pin comments; the github-actions bump moved the SHA to `581821d` and left the
+  comment on `616f45b`, which `check_pinned_actions.py` refuses (the action's
+  files are identical in both).
+
 ### Changed
 
 - Report allowlisted CI feedback failure codes and HTTP status without exposing
