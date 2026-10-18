@@ -179,7 +179,7 @@ jobs:
     permissions:
       actions: read  # allow the reusable gate to fetch exact public run/job evidence
       contents: read
-    uses: ./.github/workflows/release-promotion-gate.yml
+    uses: ./.github/workflows/release-promotion-gate.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       version: ${{ needs.resolve.outputs.version }}
@@ -216,7 +216,7 @@ jobs:
       id-token: write         # OIDC identity for SLSA build provenance
       attestations: write     # attest the SBOM and the release archive
       artifact-metadata: write   # actions/attest artifact storage record (required at v4.1.1)
-    uses: ./.github/workflows/release-supply-chain.yml
+    uses: ./.github/workflows/release-supply-chain.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       version: ${{ needs.resolve.outputs.version }}

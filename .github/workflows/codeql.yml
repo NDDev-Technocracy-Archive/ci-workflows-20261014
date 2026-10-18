@@ -23,7 +23,7 @@ jobs:
       actions: read # read workflow run metadata for the actions analysis
       contents: read
       security-events: write # upload CodeQL SARIF to the Security tab
-    uses: ./.github/workflows/public-codeql.yml
+    uses: ./.github/workflows/public-codeql.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       languages: '["python","actions"]'

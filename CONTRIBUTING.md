@@ -98,7 +98,7 @@ actionlint
 # Workflow security analysis. Pedantic is what ci-gate runs, and the token is
 # not optional: without it zizmor skips its online audits and reports a false
 # "No findings".
-GH_TOKEN=$(gh auth token) uvx zizmor@1.26.1 --persona pedantic --min-severity low .github/workflows
+GH_TOKEN=$(gh auth token) uvx zizmor@1.31.1 --persona pedantic --min-severity low .github/workflows
 
 # Complete repository contract, catalog, example, and generated-doc checks
 .venv/bin/python -I -B scripts/check_python_syntax.py
@@ -124,7 +124,7 @@ tar -xzf /tmp/actionlint.tar.gz -C ~/.local/bin actionlint
 
 # zizmor — run the version and persona CI runs, not whatever is on PATH. The pin is
 # zizmor-sarif.yml's `zizmor_version` default.
-GH_TOKEN=$(gh auth token) uvx zizmor@1.26.1 --persona pedantic --min-severity low .github/workflows
+GH_TOKEN=$(gh auth token) uvx zizmor@1.31.1 --persona pedantic --min-severity low .github/workflows
 ```
 
 Every command here uses `uv` or a checksum-verified download on purpose. The

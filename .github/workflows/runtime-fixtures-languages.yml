@@ -47,7 +47,7 @@ jobs:
     name: fixture / go-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/go-ci.yml
+    uses: ./.github/workflows/go-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/go
@@ -58,7 +58,7 @@ jobs:
     name: fixture / python-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/python-ci.yml
+    uses: ./.github/workflows/python-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/python
@@ -72,7 +72,7 @@ jobs:
     name: fixture / python-ci / pip
     permissions:
       contents: read
-    uses: ./.github/workflows/python-ci.yml
+    uses: ./.github/workflows/python-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       package_manager: pip
@@ -88,7 +88,7 @@ jobs:
     name: fixture / node-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/node-ci.yml
+    uses: ./.github/workflows/node-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/node
@@ -114,7 +114,7 @@ jobs:
             test_command: '[[ "$(node --version)" == "v24.19.0" ]] && [[ "$(yarn --version)" == "4.18.0" ]]'
     permissions:
       contents: read
-    uses: ./.github/workflows/node-ci.yml
+    uses: ./.github/workflows/node-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       package_manager: ${{ matrix.package_manager }}
@@ -131,7 +131,7 @@ jobs:
     name: fixture / rust-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/rust-ci.yml
+    uses: ./.github/workflows/rust-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/rust
@@ -143,7 +143,7 @@ jobs:
     name: fixture / cpp-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/cpp-ci.yml
+    uses: ./.github/workflows/cpp-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/cpp
@@ -154,7 +154,7 @@ jobs:
     name: fixture / terraform-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/terraform-ci.yml
+    uses: ./.github/workflows/terraform-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/terraform
@@ -164,7 +164,7 @@ jobs:
     name: fixture / sql-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/sql-ci.yml
+    uses: ./.github/workflows/sql-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/sql
@@ -176,7 +176,7 @@ jobs:
     name: fixture / docs-quality
     permissions:
       contents: read
-    uses: ./.github/workflows/docs-quality.yml
+    uses: ./.github/workflows/docs-quality.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # Repo-root-relative on purpose — see the scope note in docs-quality.yml.
@@ -193,7 +193,7 @@ jobs:
     name: fixture / hadolint-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/hadolint-ci.yml
+    uses: ./.github/workflows/hadolint-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       dockerfile: tests/fixtures/docker/Dockerfile
@@ -205,7 +205,7 @@ jobs:
     name: fixture / web-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/web-ci.yml
+    uses: ./.github/workflows/web-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/web
@@ -216,7 +216,7 @@ jobs:
     name: fixture / container-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/container-ci.yml
+    uses: ./.github/workflows/container-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       scan_type: fs
@@ -230,7 +230,7 @@ jobs:
     name: fixture / cross-platform-smoke
     permissions:
       contents: read
-    uses: ./.github/workflows/cross-platform-smoke.yml
+    uses: ./.github/workflows/cross-platform-smoke.yml  # zizmor: ignore[self-repository]
 
 
   # supporting — Maven compile and package. The POM declares no test dependency,
@@ -240,7 +240,7 @@ jobs:
     name: fixture / java-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/java-ci.yml
+    uses: ./.github/workflows/java-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/java
@@ -253,7 +253,7 @@ jobs:
     name: fixture / dotnet-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/dotnet-ci.yml
+    uses: ./.github/workflows/dotnet-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/dotnet
@@ -267,7 +267,7 @@ jobs:
     name: fixture / swift-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/swift-ci.yml
+    uses: ./.github/workflows/swift-ci.yml  # zizmor: ignore[self-repository]
     with:
       # Explicit even though it equals the reusable's default: the contract is
       # that a public caller states its runner rather than inheriting one that
@@ -294,7 +294,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/go-ci.yml
+    uses: ./.github/workflows/go-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/go
@@ -307,7 +307,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/python-ci.yml
+    uses: ./.github/workflows/python-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/python
@@ -322,7 +322,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/rust-ci.yml
+    uses: ./.github/workflows/rust-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/rust
@@ -335,7 +335,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/dotnet-ci.yml
+    uses: ./.github/workflows/dotnet-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/dotnet
@@ -349,7 +349,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/java-ci.yml
+    uses: ./.github/workflows/java-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/java
@@ -362,7 +362,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/node-ci.yml
+    uses: ./.github/workflows/node-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/node
@@ -376,7 +376,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/terraform-ci.yml
+    uses: ./.github/workflows/terraform-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/terraform
@@ -389,7 +389,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/sql-ci.yml
+    uses: ./.github/workflows/sql-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/sql
@@ -402,7 +402,7 @@ jobs:
         os: [macos-latest, windows-latest]
     permissions:
       contents: read
-    uses: ./.github/workflows/web-ci.yml
+    uses: ./.github/workflows/web-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ${{ matrix.os }}
       working_directory: tests/fixtures/web
@@ -412,7 +412,7 @@ jobs:
     name: fixture / benchmark-compare
     permissions:
       contents: read
-    uses: ./.github/workflows/benchmark-compare.yml
+    uses: ./.github/workflows/benchmark-compare.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       language: go
@@ -430,7 +430,7 @@ jobs:
     name: fixture / r-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/r-ci.yml
+    uses: ./.github/workflows/r-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/r
@@ -443,7 +443,7 @@ jobs:
     name: fixture / mutation-testing
     permissions:
       contents: read
-    uses: ./.github/workflows/mutation-testing.yml
+    uses: ./.github/workflows/mutation-testing.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       language: rust
@@ -455,7 +455,7 @@ jobs:
     name: fixture / dart-flutter-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/dart-flutter-ci.yml
+    uses: ./.github/workflows/dart-flutter-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       flutter_version: '3.47.0'
@@ -465,7 +465,7 @@ jobs:
     name: fixture / kotlin-android-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/kotlin-android-ci.yml
+    uses: ./.github/workflows/kotlin-android-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/android
@@ -474,7 +474,7 @@ jobs:
     name: fixture / qt-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/qt-ci.yml
+    uses: ./.github/workflows/qt-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       qt_version: '6.8.3'

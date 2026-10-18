@@ -7,7 +7,7 @@ past its expiry, so a stale tier claim cannot silently mislead adopters.
 
 | Fact | Provider | Product | Visibility | Plans | Model | Allowance | Status | Verified | Expires |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `aws-codebuild-free` | AWS | CodeBuild free tier | public, private | AWS Free Tier | recurring-quota | 100 ec2-build-minutes/month | official | 2026-08-10 | 2026-10-16 |
+| `aws-codebuild-free` | AWS | CodeBuild free tier | public, private | AWS Free Tier | recurring-quota | 100 ec2-build-minutes/month | official | 2026-10-18 | 2026-12-18 |
 | `appveyor-public` | AppVeyor | Free open-source plan | public | Free OSS | public-unmetered | unmetered (projects) | official | 2026-09-28 | 2026-11-14 |
 | `appcircle-always-free` | Appcircle | Always Free | public, private | Free | build-count-quota | 20 builds/month | vendor-verified | 2026-10-04 | 2026-11-17 |
 | `bitbucket-free` | Atlassian | Bitbucket Cloud Free + Pipelines | public, private | Free | recurring-quota | 50 build-minutes/month | official | 2026-09-28 | 2026-11-27 |
@@ -39,8 +39,8 @@ past its expiry, so a stale tier claim cannot silently mislead adopters.
 | `github-secret-scanning-public` | GitHub | Secret scanning | public | All current plans | included-feature | repository-feature | official | 2026-08-10 | 2026-11-06 |
 | `github-slsa-build-level-reusable` | GitHub | SLSA build level for artifact attestations | public, private, internal | Free, Pro, Team, Enterprise Cloud | included-feature | 3 slsa-v1-build-level/feature | official | 2026-08-14 | 2026-11-06 |
 | `gitlab-free-hosted` | GitLab | GitLab.com Free compute | public, private | Free | recurring-quota | 400 compute-minutes/month | official | 2026-10-13 | 2026-11-12 |
-| `gitlab-open-source-program` | GitLab | GitLab for Open Source | public | Ultimate for qualifying OSS | application-grant | 50000 compute-minutes/month | official | 2026-09-13 | 2026-10-15 |
-| `google-cloud-build-free` | Google Cloud | Cloud Build free tier | public, private | Google Cloud Free Tier | recurring-quota | 2500 e2-standard-2-build-minutes/month | official | 2026-08-10 | 2026-10-16 |
+| `gitlab-open-source-program` | GitLab | GitLab for Open Source | public | Ultimate for qualifying OSS | application-grant | 50000 compute-minutes/month | official | 2026-10-18 | 2026-11-18 |
+| `google-cloud-build-free` | Google Cloud | Cloud Build free tier | public, private | Google Cloud Free Tier | recurring-quota | 2500 e2-standard-2-build-minutes/month | official | 2026-10-18 | 2026-12-18 |
 | `harness-free` | Harness | Harness Cloud CI Free | public, private | Free | credit-quota | 2000 credits/month | conditional | 2026-09-19 | 2026-10-27 |
 | `teamcity-professional` | JetBrains | TeamCity Professional | public, private, internal | Professional | zero-license-self-hosted | unmetered (build-minutes) | official | 2026-08-10 | 2026-10-23 |
 | `azure-pipelines-private` | Microsoft Azure DevOps | Azure Pipelines private projects | private | Free included parallel job | recurring-quota | 1800 hosted-minutes/month | official | 2026-09-28 | 2026-11-24 |

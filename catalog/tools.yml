@@ -47,16 +47,17 @@ tools:
     name: zizmor
     homepage: "https://github.com/woodruffw/zizmor"
     kind: cli
-    current_version: "1.26.1"
+    current_version: "1.31.1"
     pin: null
     notes: >-
-      Held at 1.26.1. Upstream v1.31.1 (checked 2026-10-18) adds the
-      self-repository audit: 65 low findings on this tree, every one asking for
-      GitHub's `$/` reusable-workflow syntax in place of `./`. actionlint 1.7.12,
-      the newest release, rejects `$/` as a malformed workflow call, so the two
-      gates cannot both pass; the audit would also fail every consumer calling
-      its own `./.github/workflows/*` through the security bundles. Revisit when
-      actionlint accepts `$/`.
+      1.31.1 (checked 2026-10-18). Its self-repository audit asks for GitHub's
+      `$/` syntax in place of `./`; actionlint 1.7.12, the newest release
+      (2026-03-30), rejects `$/` as a malformed workflow call. Every finding on
+      this tree is a job-level reusable workflow call, which GitHub resolves from
+      the caller's commit rather than the workspace, so no earlier step can
+      substitute it: those 65 lines carry an inline
+      `# zizmor: ignore[self-repository]`. A step-level `./` action is still
+      reported. Move to `$/` and drop the comments when actionlint accepts it.
     used_by:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/private-security-bundle-free.yml

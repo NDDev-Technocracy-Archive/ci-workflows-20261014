@@ -227,7 +227,7 @@ jobs:
   actionlint:
     permissions:
       contents: read
-    uses: ./.github/workflows/actionlint.yml
+    uses: ./.github/workflows/actionlint.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
 
@@ -236,7 +236,7 @@ jobs:
       actions: read           # upload-sarif reads this workflow run
       contents: read          # check out the tree being analysed
       security-events: write  # publish zizmor SARIF to code scanning
-    uses: ./.github/workflows/zizmor-sarif.yml
+    uses: ./.github/workflows/zizmor-sarif.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # pedantic adds undocumented-permissions on top of the regular persona:

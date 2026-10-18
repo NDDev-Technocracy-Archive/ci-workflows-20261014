@@ -9,6 +9,11 @@ The project follows Semantic Versioning.
 
 ### Fixed
 
+- Re-verify the three product facts whose verification expired (GitLab for Open
+  Source, Cloud Build and CodeBuild free tiers) against their sources; the GitLab
+  pricing FAQ now names the open-source grant's period itself (50K compute
+  minutes per month), so that fact no longer qualifies the monthly reading.
+
 - Name the tool-cache action's own commit in the private security bundle's four
   pin comments; the github-actions bump moved the SHA to `581821d` and left the
   comment on `616f45b`, which `check_pinned_actions.py` refuses (the action's
@@ -19,9 +24,17 @@ The project follows Semantic Versioning.
 - Pin uv 0.13.1 (from 0.11.30) wherever workflows, examples and module
   validation install it, and OSV-Scanner v2.7.0 (from v2.6.0) in `osv-scan.yml`
   and the private security bundle, each verified against its upstream checksum
-  file. actionlint 1.7.12 and gitleaks 8.30.1 are the newest releases. zizmor
-  stays at 1.26.1: 1.31.1's `self-repository` audit asks for the `$/` workflow
-  syntax that actionlint 1.7.12 rejects (`catalog/tools.yml`).
+  file. actionlint 1.7.12 and gitleaks 8.30.1 are the newest releases.
+
+- Pin zizmor 1.31.1 (from 1.26.1) in both zizmor workflows' defaults, the
+  private security bundle and the documented commands. Its `self-repository`
+  audit asks for GitHub's `$/` syntax, which actionlint 1.7.12 rejects. All 65
+  findings on this tree are job-level reusable workflow calls, resolved from the
+  caller's commit rather than the workspace; each carries an inline
+  `# zizmor: ignore[self-repository]` until actionlint accepts `$/`, and a
+  step-level `./` action is still reported (`catalog/tools.yml`). Consumers
+  moving to this pin need the same comment on their own job-level
+  `uses: ./.github/workflows/...` calls.
 
 - Report allowlisted CI feedback failure codes and HTTP status without exposing
   remote response text, credentials, URLs or arbitrary exception messages.
