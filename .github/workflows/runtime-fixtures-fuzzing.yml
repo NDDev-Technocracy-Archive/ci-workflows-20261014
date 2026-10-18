@@ -21,7 +21,7 @@ jobs:
   cargo-fuzz:
     permissions:
       contents: read # cargo-fuzz compiles the checked-out fixture tree
-    uses: ./.github/workflows/fuzzing.yml
+    uses: ./.github/workflows/fuzzing.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/rust
@@ -35,7 +35,7 @@ jobs:
       actions: read # ClusterFuzzLite discovers prior corpus/build runs
       contents: read # build the checked-out C++ harness
       security-events: write # upload the real SARIF result requested below
-    uses: ./.github/workflows/clusterfuzzlite.yml
+    uses: ./.github/workflows/clusterfuzzlite.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       mode: code-change

@@ -654,18 +654,17 @@ facts:
   - Program membership does not include support
   - Project must remain eligible under program rules
   - Membership must be renewed annually or the account is downgraded
-  - The program page states the compute-minute grant alongside an annual renewal cycle without naming
-    the accrual period; treat the monthly reading as the Ultimate-tier allotment, not a program claim
   payment_method: not-required-after-approval
   overage: program/plan dependent
   status: official
   source_authority: primary
-  verified_at: '2026-09-13'
-  expires_after: '2026-10-15'
+  verified_at: '2026-10-18'
+  expires_after: '2026-11-18'
   source_urls:
   - https://about.gitlab.com/solutions/open-source/join/
   - https://about.gitlab.com/pricing/
   notes:
+  - "Re-verified 2026-10-18: the programme page grants GitLab Ultimate (self-managed or SaaS) with 50,000 compute minutes at a program-specific cost factor, for OSI-licensed, publicly visible, not-for-profit namespaces, renewed annually and without support; the pricing FAQ now names the period itself (free Ultimate licenses with 50K compute minutes/month for qualifying open source projects), so the monthly reading is a program claim."
   - "Re-verified 2026-09-13: the official programme page retains the Ultimate grant and 50,000 compute minutes, public OSI-licensed non-profit eligibility and annual renewal; the pricing page states the Ultimate monthly allowance. Community subscriptions currently cannot purchase GitLab Credits."
   - 'Re-verified 2026-08-10: grant is GitLab Ultimate (self-managed or SaaS) including 50,000 compute
     minutes, gated on OSI-approved licence, public visibility and non-profit status, applied for
@@ -966,11 +965,12 @@ facts:
   overage: metered Google Cloud billing
   status: official
   source_authority: primary
-  verified_at: '2026-08-10'
-  expires_after: '2026-10-16'
+  verified_at: '2026-10-18'
+  expires_after: '2026-12-18'
   source_urls:
   - https://cloud.google.com/build/pricing
-  notes: []
+  notes:
+  - "Re-verified 2026-10-18: each billing account comes with 2,500 free build-minutes per month; the promotional free tier is for e2-standard-2 machine types in the default pool and the limit is subject to change; network egress is charged at standard rates."
 - id: aws-codebuild-free
   provider: AWS
   product: CodeBuild free tier
@@ -994,11 +994,12 @@ facts:
   overage: metered AWS billing
   status: official
   source_authority: primary
-  verified_at: '2026-08-10'
-  expires_after: '2026-10-16'
+  verified_at: '2026-10-18'
+  expires_after: '2026-12-18'
   source_urls:
   - https://aws.amazon.com/codebuild/pricing/
-  notes: []
+  notes:
+  - "Re-verified 2026-10-18: 100 total build minutes per month on general1.small or arm1.small (EC2 on-demand) and 6,000 total build seconds per month on lambda.arm.1GB or lambda.x86-64.1GB; it does not expire at the end of the 12-month AWS Free Tier term and is available to new and existing customers."
 - id: blacksmith-free
   provider: Blacksmith
   product: Free GitHub Actions runner pool

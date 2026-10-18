@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: read # read the public repository Scorecard evaluates
       actions: read # inspect workflow definitions for the scoring checks
-    uses: ./.github/workflows/public-scorecard-analysis.yml
+    uses: ./.github/workflows/public-scorecard-analysis.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       sarif_category: ossf-scorecard
@@ -29,7 +29,7 @@ jobs:
       id-token: write # OpenSSF Scorecard publish provenance
       contents: read # read the public repository Scorecard evaluates
       actions: read # inspect workflow definitions for the scoring checks
-    uses: ./.github/workflows/public-scorecard.yml
+    uses: ./.github/workflows/public-scorecard.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       publish_results: true

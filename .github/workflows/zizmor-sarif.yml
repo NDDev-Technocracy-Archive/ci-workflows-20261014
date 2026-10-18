@@ -17,7 +17,7 @@ on:
         default: 'ubuntu-latest'
       zizmor_version:
         type: string
-        default: '1.26.1'
+        default: '1.31.1'
       persona:
         description: 'zizmor persona: regular, pedantic, or auditor.'
         type: string

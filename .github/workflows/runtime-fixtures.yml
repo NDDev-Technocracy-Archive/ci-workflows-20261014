@@ -49,7 +49,7 @@ jobs:
     name: fixture / actionlint
     permissions:
       contents: read
-    uses: ./.github/workflows/actionlint.yml
+    uses: ./.github/workflows/actionlint.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
 
@@ -61,7 +61,7 @@ jobs:
     name: fixture / zizmor (no SARIF)
     permissions:
       contents: read
-    uses: ./.github/workflows/zizmor-no-sarif.yml
+    uses: ./.github/workflows/zizmor-no-sarif.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
 
@@ -70,7 +70,7 @@ jobs:
     name: fixture / secret-scan
     permissions:
       contents: read
-    uses: ./.github/workflows/secret-scan.yml
+    uses: ./.github/workflows/secret-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
 
@@ -80,7 +80,7 @@ jobs:
     name: fixture / secret-scan / binary
     permissions:
       contents: read
-    uses: ./.github/workflows/secret-scan.yml
+    uses: ./.github/workflows/secret-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       execution_mode: binary
@@ -93,7 +93,7 @@ jobs:
       actions: read           # upload-sarif reads this fixture workflow run
       contents: read          # scan the fixture repository checkout
       security-events: write  # publish the fixture's zizmor SARIF result
-    uses: ./.github/workflows/nddev-security-bundle.yml
+    uses: ./.github/workflows/nddev-security-bundle.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       zizmor_target: .github/workflows
@@ -105,7 +105,7 @@ jobs:
     name: fixture / consolidated private-free security
     permissions:
       contents: read
-    uses: ./.github/workflows/private-security-bundle-free.yml
+    uses: ./.github/workflows/private-security-bundle-free.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       zizmor_target: .github/workflows
@@ -117,7 +117,7 @@ jobs:
     name: fixture / private-static
     permissions:
       contents: read
-    uses: ./.github/workflows/private-static.yml
+    uses: ./.github/workflows/private-static.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # The first fixture run failed here with `uv: command not found`: the lane
@@ -147,7 +147,7 @@ jobs:
     name: fixture / monorepo router
     permissions:
       contents: read
-    uses: ./.github/workflows/monorepo-changed-paths.yml
+    uses: ./.github/workflows/monorepo-changed-paths.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       filters: '{"workflows":[".github/workflows/"],"catalog":["catalog/"],"scripts":["scripts/"]}'
@@ -158,7 +158,7 @@ jobs:
     name: fixture / osv-scan
     permissions:
       contents: read
-    uses: ./.github/workflows/osv-scan.yml
+    uses: ./.github/workflows/osv-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # tests/fixtures/android vendors the Android Gradle Plugin's transitive
@@ -176,7 +176,7 @@ jobs:
     name: fixture / semgrep
     permissions:
       contents: read
-    uses: ./.github/workflows/semgrep-ci.yml
+    uses: ./.github/workflows/semgrep-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
 
@@ -184,7 +184,7 @@ jobs:
     name: fixture / coverage gate
     permissions:
       contents: read
-    uses: ./.github/workflows/coverage-gate.yml
+    uses: ./.github/workflows/coverage-gate.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/python
@@ -199,7 +199,7 @@ jobs:
     name: fixture / grype scan
     permissions:
       contents: read
-    uses: ./.github/workflows/grype-scan.yml
+    uses: ./.github/workflows/grype-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       path: tests/fixtures
@@ -210,7 +210,7 @@ jobs:
     name: fixture / iac scan
     permissions:
       contents: read
-    uses: ./.github/workflows/iac-scan.yml
+    uses: ./.github/workflows/iac-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       directory: tests/fixtures/terraform
@@ -224,7 +224,7 @@ jobs:
       actions: read           # CodeQL SARIF upload reads this workflow run
       contents: read          # CodeQL checks out and analyzes this repository
       security-events: write  # publish the fixture analysis to code scanning
-    uses: ./.github/workflows/public-codeql.yml
+    uses: ./.github/workflows/public-codeql.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       languages: '["actions"]'
@@ -236,7 +236,7 @@ jobs:
       actions: read           # SARIF upload reads this workflow run
       contents: read          # zizmor checks out and analyzes the clean fixture
       security-events: write  # publish the fixture SARIF to code scanning
-    uses: ./.github/workflows/zizmor-sarif.yml
+    uses: ./.github/workflows/zizmor-sarif.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       persona: regular
@@ -247,7 +247,7 @@ jobs:
     name: fixture / Rust supply chain
     permissions:
       contents: read
-    uses: ./.github/workflows/rust-supply-chain.yml
+    uses: ./.github/workflows/rust-supply-chain.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       working_directory: tests/fixtures/rust
@@ -261,7 +261,7 @@ jobs:
     name: fixture / docs-ci
     permissions:
       contents: read
-    uses: ./.github/workflows/docs-ci.yml
+    uses: ./.github/workflows/docs-ci.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # The default glob is repo-wide, which is the point — this lane checks
@@ -279,7 +279,7 @@ jobs:
     if: always()
     permissions:
       contents: read
-    uses: ./.github/workflows/gate.yml
+    uses: ./.github/workflows/gate.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       check_name: fixture summary

@@ -64,7 +64,7 @@ jobs:
     needs: prepare-benchmark
     permissions:
       contents: write # pinned publish action receives only repository contents write
-    uses: ./.github/workflows/benchmark.yml
+    uses: ./.github/workflows/benchmark.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       language: go
@@ -204,7 +204,7 @@ jobs:
       contents: read       # checkout commits and the labeler configuration
       issues: write        # required ceiling for the disabled stale nested job
       pull-requests: write # validate the PR and apply the existing ci label
-    uses: ./.github/workflows/pr-hygiene.yml
+    uses: ./.github/workflows/pr-hygiene.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       commitlint: true
@@ -219,7 +219,7 @@ jobs:
       contents: read       # checkout commits and validate the explicit config file
       issues: write        # required ceiling for the disabled stale nested job
       pull-requests: write # required ceiling for disabled PR mutation jobs
-    uses: ./.github/workflows/pr-hygiene.yml
+    uses: ./.github/workflows/pr-hygiene.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       commitlint: true

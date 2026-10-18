@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write # post the dependency review summary on the PR
-    uses: ./.github/workflows/public-dependency-review.yml
+    uses: ./.github/workflows/public-dependency-review.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       fail_on_severity: moderate

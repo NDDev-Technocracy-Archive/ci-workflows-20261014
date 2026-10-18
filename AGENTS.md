@@ -28,7 +28,7 @@ uv pip install --python .venv/bin/python --require-hashes -r requirements-ci.txt
 .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch validate_all.py -- --tier core
 .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch validate_all.py --
 actionlint
-GH_TOKEN=$(gh auth token) uvx zizmor@1.26.1 --persona pedantic --min-severity low .github/workflows
+GH_TOKEN=$(gh auth token) uvx zizmor@1.31.1 --persona pedantic --min-severity low .github/workflows
 .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch generate_docs.py --
 .venv/bin/python -I -B scripts/check_python_execution_contract.py --launch resolve_profile.py -- --visibility private --plan team --code-security
 ```

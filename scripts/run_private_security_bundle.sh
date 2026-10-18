@@ -5,7 +5,7 @@ umask 077
 
 readonly actionlint_version=1.7.12
 readonly actionlint_sha256=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
-readonly zizmor_version=1.26.1
+readonly zizmor_version=1.31.1
 readonly osv_version=2.7.0
 readonly osv_sha256=160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b
 readonly gitleaks_version=8.30.1

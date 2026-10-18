@@ -18,7 +18,7 @@ jobs:
   gitleaks:
     permissions:
       contents: read
-    uses: ./.github/workflows/secret-scan.yml
+    uses: ./.github/workflows/secret-scan.yml  # zizmor: ignore[self-repository]
     with:
       runner: ubuntu-latest
       # Preserve history/version while avoiding the same Docker Hub pull
