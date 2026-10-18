@@ -20,7 +20,7 @@ def check() -> list[str]:
         return problems + ["hermetic module verification wrapper is missing or unsafe"]
     text = wrapper.read_text(encoding="utf-8")
     required = (
-        "UV_VERSION=0.11.30",
+        "UV_VERSION=0.13.1",
         'PYTHON_ENV="$ROOT/.venv"',
         "PYTHON_ENV_OWNED=0",
         "python find 3.13.14",

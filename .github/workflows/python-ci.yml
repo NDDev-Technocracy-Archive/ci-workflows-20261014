@@ -32,7 +32,7 @@ on:
       uv_version:
         description: 'Exact uv version.'
         type: string
-        default: '0.11.30'
+        default: '0.13.1'
       working_directory:
         type: string
         default: '.'

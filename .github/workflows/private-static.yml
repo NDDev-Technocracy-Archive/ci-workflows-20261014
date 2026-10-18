@@ -28,7 +28,7 @@ on:
       uv_version:
         description: 'Exact astral-sh/uv version to pin when setup_uv is true.'
         type: string
-        default: '0.11.30'
+        default: '0.13.1'
       checkout_ref:
         description: 'Optional ref/SHA to checkout (needed by pull_request wrappers).'
         type: string

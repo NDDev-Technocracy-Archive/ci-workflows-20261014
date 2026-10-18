@@ -104,7 +104,7 @@ jobs:
           # version in pyproject.toml or, absent one, whatever is latest.
           # There is no pyproject.toml here, so this resolved to latest --
           # a SHA-pinned action installing an unpinned tool.
-          version: 0.11.30
+          version: 0.13.1
           # uv provisions aqtinstall here, not the caller's dependencies.
           # The Qt install itself is cached separately and by key, below.
           enable-cache: false
