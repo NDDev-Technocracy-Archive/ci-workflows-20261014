@@ -59,7 +59,7 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
         with:
-          version: 0.11.30
+          version: 0.13.1
           # This workflow backs the `zizmor` job, which is in `ci-gate.needs`.
           # The self-CI aggregate must not take an unreviewed input.
           enable-cache: false

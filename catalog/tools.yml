@@ -41,7 +41,7 @@ tools:
       - .github/workflows/actionlint.yml
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/private-security-bundle-free.yml
-    last_verified: "2026-09-21"
+    last_verified: "2026-10-18"
 
   - id: zizmor
     name: zizmor
@@ -50,15 +50,19 @@ tools:
     current_version: "1.26.1"
     pin: null
     notes: >-
-      Upstream v1.30.1 exists; its new audits report 65 low findings on this
-      tree (self-repository et al). Held for a dedicated triage PR — the
-      self-CI zizmor job fails on any finding at or above 'low'.
+      Held at 1.26.1. Upstream v1.31.1 (checked 2026-10-18) adds the
+      self-repository audit: 65 low findings on this tree, every one asking for
+      GitHub's `$/` reusable-workflow syntax in place of `./`. actionlint 1.7.12,
+      the newest release, rejects `$/` as a malformed workflow call, so the two
+      gates cannot both pass; the audit would also fail every consumer calling
+      its own `./.github/workflows/*` through the security bundles. Revisit when
+      actionlint accepts `$/`.
     used_by:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/private-security-bundle-free.yml
       - .github/workflows/zizmor-sarif.yml
       - .github/workflows/zizmor-no-sarif.yml
-    last_verified: "2026-09-21"
+    last_verified: "2026-10-18"
 
   - id: gitleaks
     name: gitleaks
@@ -71,7 +75,7 @@ tools:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/private-security-bundle-free.yml
       - .github/workflows/secret-scan.yml
-    last_verified: "2026-09-21"
+    last_verified: "2026-10-18"
 
   - id: trivy
     name: Trivy
@@ -422,13 +426,13 @@ tools:
     name: osv-scanner
     homepage: "https://github.com/google/osv-scanner"
     kind: cli
-    current_version: "v2.6.0"
+    current_version: "v2.7.0"
     pin: null
     used_by:
       - .github/workflows/osv-scan.yml
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/private-security-bundle-free.yml
-    last_verified: "2026-09-21"
+    last_verified: "2026-10-18"
 
   - id: semgrep
     name: semgrep

@@ -16,6 +16,13 @@ The project follows Semantic Versioning.
 
 ### Changed
 
+- Pin uv 0.13.1 (from 0.11.30) wherever workflows, examples and module
+  validation install it, and OSV-Scanner v2.7.0 (from v2.6.0) in `osv-scan.yml`
+  and the private security bundle, each verified against its upstream checksum
+  file. actionlint 1.7.12 and gitleaks 8.30.1 are the newest releases. zizmor
+  stays at 1.26.1: 1.31.1's `self-repository` audit asks for the `$/` workflow
+  syntax that actionlint 1.7.12 rejects (`catalog/tools.yml`).
+
 - Report allowlisted CI feedback failure codes and HTTP status without exposing
   remote response text, credentials, URLs or arbitrary exception messages.
   Preserve bounded requests, failed exit status and ambiguous-write reconciliation;

@@ -26,7 +26,7 @@ jobs:
           update-environment: false
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
-          version: 0.11.30
+          version: 0.13.1
       - name: Provision the compiler environment
         env:
           PYTHON_PATH: ${{ steps.python.outputs.python-path }}
