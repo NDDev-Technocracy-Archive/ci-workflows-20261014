@@ -23,7 +23,7 @@ schema_version: 1
 
 images:
   - action: ossf/scorecard-action
-    image: docker://ghcr.io/ossf/scorecard-action:v2.4.4
+    image: docker://ghcr.io/ossf/scorecard-action:v2.5.0
     used_by:
       - .github/workflows/public-scorecard.yml
       - .github/workflows/public-scorecard-analysis.yml
@@ -33,7 +33,7 @@ images:
       published-evidence path for the public tier, so a substituted image would
       change what the SARIF and JSON attest to.
   - action: bridgecrewio/checkov-action
-    image: docker://ghcr.io/bridgecrewio/checkov:3.3.26
+    image: docker://ghcr.io/bridgecrewio/checkov:3.3.28
     used_by:
       - .github/workflows/iac-scan.yml
     reason: >-

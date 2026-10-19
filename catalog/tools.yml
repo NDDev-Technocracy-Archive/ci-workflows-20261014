@@ -146,8 +146,8 @@ tools:
     name: ossf/scorecard-action
     homepage: "https://github.com/ossf/scorecard-action"
     kind: action
-    current_version: "v2.4.4"
-    pin: "ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc"
+    current_version: "v2.5.0"
+    pin: "ossf/scorecard-action@fa7117db83c52d787ae5a89f350999701505d78e"
     used_by:
       - .github/workflows/public-scorecard-analysis.yml
       - .github/workflows/public-scorecard.yml
@@ -469,8 +469,8 @@ tools:
     name: bridgecrewio/checkov-action
     homepage: "https://github.com/bridgecrewio/checkov-action"
     kind: action
-    current_version: "v12.3131.0"
-    pin: "bridgecrewio/checkov-action@c13aafd679d3814a25067d10fcaf98c4f7594931"
+    current_version: "v12.3133.0"
+    pin: "bridgecrewio/checkov-action@29be5868bfa968f099ae80169f61f42887494b8f"
     used_by:
       - .github/workflows/iac-scan.yml
     last_verified: "2026-09-21"
@@ -514,8 +514,8 @@ tools:
     name: astral-sh/setup-uv
     homepage: "https://github.com/astral-sh/setup-uv"
     kind: action
-    current_version: "v10.2.0"
-    pin: "astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7"
+    current_version: "v10.3.0"
+    pin: "astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884"
     used_by:
       - .github/workflows/ci.yml
       - .github/workflows/dependabot-catalog-convergence.yml
@@ -660,8 +660,8 @@ tools:
     name: taiki-e/install-action
     homepage: "https://github.com/taiki-e/install-action"
     kind: action
-    current_version: "v2.87.26"
-    pin: "taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad"
+    current_version: "v2.87.28"
+    pin: "taiki-e/install-action@1168f6810a3cb30a3514bf5756a3b7f0422c6df8"
     used_by:
       - .github/workflows/rust-supply-chain.yml
     last_verified: "2026-09-21"
