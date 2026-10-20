@@ -168,8 +168,10 @@ producers:
       Vendored from NDDev-Archive/github-actions-garm/actions/tool-cache
       468af475 and addressed by this repository's own name: a called workflow
       cannot reach its vendored actions through `./`, which resolves against
-      the caller's workspace. Cache use is conditional on a complete per-job Drakkars
-      assignment. GitHub-hosted runners and malformed or unavailable
+      the caller's workspace. A self-hosted runner first reuses its own
+      verified copy under RUNNER_TOOL_CACHE, checked against the pinned
+      checksum on every use. Drakkars cache use is conditional on a complete
+      per-job assignment. GitHub-hosted runners and malformed or unavailable
       assignments use the checksum-verified upstream path; private writes
       remain inside the caller's injected trust prefix.
 

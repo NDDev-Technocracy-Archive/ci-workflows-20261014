@@ -1,5 +1,5 @@
 name: NDDev immutable tool cache
-description: Restore a checksum-pinned tool artifact from the Drakkars cache, with a verified upstream fallback.
+description: Restore a checksum-pinned tool artifact from the runner's own tool cache or the Drakkars cache, with a verified upstream fallback.
 
 inputs:
   url:
@@ -18,7 +18,7 @@ inputs:
 
 outputs:
   source:
-    description: cache or upstream.
+    description: runner, cache or upstream.
     value: ${{ steps.fetch.outputs.source }}
   bytes:
     description: Verified artifact size.

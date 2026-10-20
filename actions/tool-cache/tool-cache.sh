@@ -68,7 +68,39 @@ elif (( present != 0 )); then
 fi
 
 cache_key=$(printf 'nddev-tool-cache-v1\0%s\0%s' "$url" "$expected_sha256" | sha256sum | cut -d' ' -f1)
-if [[ "$cache_enabled" == true ]]; then
+
+verify_candidate() {
+  local bytes actual
+  [[ -f "$candidate" && ! -L "$candidate" ]] || return 1
+  bytes=$(stat --format='%s' -- "$candidate")
+  [[ "$bytes" =~ ^[0-9]+$ ]] && (( bytes > 0 && bytes <= max_bytes )) || return 1
+  actual=$(sha256sum "$candidate" | cut -d' ' -f1)
+  [[ "$actual" == "$expected_sha256" ]]
+}
+
+# A persistent self-hosted runner keeps each verified artifact in its own tool cache, so a slow
+# upstream link costs one download per runner instead of one per job. The entry is copied into
+# this job's scratch and verified there; an altered, truncated or unreadable entry is replaced.
+runner_result=disabled
+runner_entry=
+if [[ "${RUNNER_ENVIRONMENT:-}" == self-hosted && "${RUNNER_TOOL_CACHE:-}" == /* &&
+      -d "$RUNNER_TOOL_CACHE" && ! -L "$RUNNER_TOOL_CACHE" ]]; then
+  runner_entry="$RUNNER_TOOL_CACHE/nddev-tool-cache/v1/$cache_key"
+  runner_result=miss
+  if [[ -f "$runner_entry" && ! -L "$runner_entry" ]]; then
+    if cp -- "$runner_entry" "$candidate" 2>/dev/null && verify_candidate; then
+      runner_result=hit
+      source=runner
+      touch -- "$runner_entry" 2>/dev/null || true
+    else
+      runner_result=invalid-entry
+      rm -f -- "$candidate"
+      printf '::warning::NDDev runner tool cache entry failed size or checksum verification; replacing it\n'
+    fi
+  fi
+fi
+
+if [[ "$cache_enabled" == true && "$source" == upstream ]]; then
   object_key="$NDDEV_CACHE_PREFIX_ROOT/tools/v1/sha256/$expected_sha256/$cache_key"
   object_url="${SCCACHE_ENDPOINT%/}/$SCCACHE_BUCKET/$object_key"
   sigv4="aws:amz:$AWS_REGION:s3"
@@ -89,15 +121,6 @@ if [[ "$cache_enabled" == true ]]; then
     cache_result=transport-error
   fi
 fi
-
-verify_candidate() {
-  local bytes actual
-  [[ -f "$candidate" && ! -L "$candidate" ]] || return 1
-  bytes=$(stat --format='%s' -- "$candidate")
-  [[ "$bytes" =~ ^[0-9]+$ ]] && (( bytes > 0 && bytes <= max_bytes )) || return 1
-  actual=$(sha256sum "$candidate" | cut -d' ' -f1)
-  [[ "$actual" == "$expected_sha256" ]]
-}
 
 if [[ "$source" == cache ]] && ! verify_candidate; then
   cache_result=invalid-object
@@ -129,10 +152,24 @@ if [[ "$source" == upstream ]]; then
   fi
 fi
 
+if [[ -n "$runner_entry" && "$source" != runner ]]; then
+  stored=false
+  if install -d -- "${runner_entry%/*}" 2>/dev/null && staged=$(mktemp "$runner_entry.XXXXXXXXXX" 2>/dev/null); then
+    if cp -- "$candidate" "$staged" 2>/dev/null && mv -f -- "$staged" "$runner_entry" 2>/dev/null; then
+      stored=true
+    else
+      rm -f -- "$staged"
+    fi
+  fi
+  if [[ "$stored" == true ]]; then runner_result="${runner_result}+stored"; else runner_result="${runner_result}+store-failed"; fi
+  # A month without a hit means the pin moved on; staged leftovers of killed jobs go too.
+  find "${runner_entry%/*}" -maxdepth 1 -type f -mtime +30 -delete 2>/dev/null || true
+fi
+
 bytes=$(stat --format='%s' -- "$candidate")
 test ! -L "$output"
 install -m 0600 "$candidate" "$output"
 duration_ms=$(( $(date +%s%3N) - started ))
 printf 'source=%s\nbytes=%s\nduration_ms=%s\n' "$source" "$bytes" "$duration_ms" >>"$GITHUB_OUTPUT"
-printf 'nddev_tool_cache_event={"source":"%s","cache_result":"%s","sha256":"%s","bytes":%s,"duration_ms":%s}\n' \
-  "$source" "$cache_result" "$expected_sha256" "$bytes" "$duration_ms"
+printf 'nddev_tool_cache_event={"source":"%s","cache_result":"%s","runner_cache":"%s","sha256":"%s","bytes":%s,"duration_ms":%s}\n' \
+  "$source" "$cache_result" "$runner_result" "$expected_sha256" "$bytes" "$duration_ms"

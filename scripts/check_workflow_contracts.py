@@ -419,6 +419,7 @@ printf 'GIT_CONFIG_GLOBAL=%s\\n' "$isolated_config" >> "$GITHUB_ENV"
     problems += _started_runs_are_preserved()
     problems += _download_attempts_are_bounded()
     problems += _probe_tool_cache_download(workflow_root.parents[1])
+    problems += _probe_tool_cache_runner_copy(workflow_root.parents[1])
     return problems
 
 
@@ -590,6 +591,84 @@ exec "$PROBE_CURL" --disable "${args[@]}" --noproxy '*' \
                     problems.append("tool-cache: failed or successful attempt left its partial scratch artifact")
     except (OSError, ValueError, subprocess.TimeoutExpired) as error:
         problems.append(f"tool-cache HTTPS probe failed: {error}")
+    return problems
+
+
+def _probe_tool_cache_runner_copy(root: Path) -> list[str]:
+    """A self-hosted runner's verified copy replaces the download; nothing else may."""
+    problems: list[str] = []
+    script = root / "actions/tool-cache/tool-cache.sh"
+    payload = b"immutable tool fixture\n"
+    digest = hashlib.sha256(payload).hexdigest()
+    url = "https://github.com/fixture/tool.tar.gz"
+    key = hashlib.sha256(b"nddev-tool-cache-v1\0" + url.encode() + b"\0" + digest.encode()).hexdigest()
+    # mode: (runner environment, seeded entry, upstream reachable, expected source, entry after)
+    cases = {
+        "store": ("self-hosted", None, True, "upstream", payload),
+        "hit": ("self-hosted", payload, False, "runner", payload),
+        "poisoned": ("self-hosted", b"poisoned tool fixture\n", True, "upstream", payload),
+        "github-hosted": ("github-hosted", payload, True, "upstream", payload),
+    }
+    try:
+        with tempfile.TemporaryDirectory(prefix="tool-cache-runner-") as directory:
+            target = Path(directory)
+            bindir = target / "bin"
+            bindir.mkdir()
+            wrapper = bindir / "curl"
+            # Upstream stands in for the TLS path the download probe already covers.
+            wrapper.write_text("#!/usr/bin/env bash\nset -euo pipefail\n" + r"""
+printf 'call\n' >> "$PROBE_CALLS"
+[[ "$PROBE_UPSTREAM" == reachable ]] || exit 7
+while (( $# )); do
+  if [[ "$1" == --output ]]; then cp -- "$PROBE_PAYLOAD" "$2"; exit 0; fi
+  shift
+done
+exit 2
+""")
+            wrapper.chmod(0o700)
+            served = target / "payload"
+            served.write_bytes(payload)
+            for mode, (environment, seeded, reachable, expected, after) in cases.items():
+                case = target / mode
+                case.mkdir()
+                tools = case / "tool-cache"
+                entry = tools / "nddev-tool-cache" / "v1" / key
+                if seeded is not None:
+                    entry.parent.mkdir(parents=True)
+                    entry.write_bytes(seeded)
+                tools.mkdir(exist_ok=True)
+                output = case / "artifact"
+                env = clean_environment({
+                    "PATH": str(bindir) + os.pathsep + os.environ["PATH"],
+                    "HOME": str(case), "RUNNER_TEMP": str(case), "GITHUB_OUTPUT": str(case / "outputs"),
+                    "RUNNER_ENVIRONMENT": environment, "RUNNER_TOOL_CACHE": str(tools),
+                    "NDDEV_TOOL_CACHE_URL": url, "NDDEV_TOOL_CACHE_SHA256": digest,
+                    "NDDEV_TOOL_CACHE_OUTPUT": str(output), "NDDEV_TOOL_CACHE_MAX_BYTES": "64",
+                    "PROBE_CALLS": str(case / "calls"), "PROBE_PAYLOAD": str(served),
+                    "PROBE_UPSTREAM": "reachable" if reachable else "offline",
+                })
+                for name in tuple(env):
+                    if name.startswith(("AWS_", "SCCACHE_", "NDDEV_CACHE_")):
+                        del env[name]
+                result = subprocess.run(["bash", str(script)], cwd=root, env=env,
+                                        capture_output=True, text=True, timeout=15)
+                calls = len((case / "calls").read_text().splitlines()) if (case / "calls").exists() else 0
+                outputs = (case / "outputs").read_text() if (case / "outputs").exists() else ""
+                print(f"tool-cache runner {mode}: exit={result.returncode}, upstream calls={calls}")
+                if result.returncode or not output.exists() or output.read_bytes() != payload:
+                    problems.append(f"tool-cache runner {mode}: must install the verified artifact")
+                if f"source={expected}\n" not in outputs:
+                    problems.append(f"tool-cache runner {mode}: source must be {expected}")
+                if calls != (0 if expected == "runner" else 1):
+                    problems.append(f"tool-cache runner {mode}: upstream calls {calls} do not match the source")
+                if not entry.exists() or entry.read_bytes() != after:
+                    problems.append(f"tool-cache runner {mode}: the runner entry must hold only verified bytes")
+                if [p.name for p in entry.parent.iterdir() if p.name != key]:
+                    problems.append(f"tool-cache runner {mode}: left a staged copy beside the entry")
+                if list(case.glob("nddev-tool-cache.*")):
+                    problems.append(f"tool-cache runner {mode}: left its scratch artifact")
+    except (OSError, ValueError, subprocess.TimeoutExpired) as error:
+        problems.append(f"tool-cache runner probe failed: {error}")
     return problems
 
 
