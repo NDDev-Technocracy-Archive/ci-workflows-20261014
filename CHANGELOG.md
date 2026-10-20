@@ -17,7 +17,8 @@ The project follows Semantic Versioning.
   size and checksum there, and replaces any entry that fails; entries without a
   hit for 30 days are pruned. GitHub-hosted runners keep the upstream path.
   `check_workflow_contracts.py` proves the store, hit, poisoned-entry and
-  GitHub-hosted cases.
+  GitHub-hosted cases. `private-security-bundle-free.yml` pins the action at
+  the commit that adds the runner copy.
 
 - Make zizmor findings fail the gate in both security bundles and in
   `zizmor-sarif.yml`. With `--format sarif` zizmor exits 0 whatever it finds, so
