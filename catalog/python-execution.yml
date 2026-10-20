@@ -792,6 +792,10 @@
         "count": 2,
         "profile": "external-tool-fixture"
       },
+      "_probe_tool_cache_runner_copy": {
+        "count": 1,
+        "profile": "shell-fixture"
+      },
       "run": {
         "count": 1,
         "profile": "shell-fixture"

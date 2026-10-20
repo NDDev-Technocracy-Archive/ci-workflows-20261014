@@ -9,6 +9,16 @@ The project follows Semantic Versioning.
 
 ### Fixed
 
+- Keep each verified tool artifact in a self-hosted runner's own tool cache.
+  Every private security bundle job downloaded uv, actionlint, OSV-Scanner and
+  gitleaks from GitHub releases again; on a congested runner link uv arrived at
+  about 22 KB/s and both 300 s attempts timed out, failing the job. The
+  tool-cache action now copies a stored entry into the job's scratch, verifies
+  size and checksum there, and replaces any entry that fails; entries without a
+  hit for 30 days are pruned. GitHub-hosted runners keep the upstream path.
+  `check_workflow_contracts.py` proves the store, hit, poisoned-entry and
+  GitHub-hosted cases.
+
 - Make zizmor findings fail the gate in both security bundles and in
   `zizmor-sarif.yml`. With `--format sarif` zizmor exits 0 whatever it finds, so
   `run_private_security_bundle.sh` passed every consumer whatever the SARIF held
