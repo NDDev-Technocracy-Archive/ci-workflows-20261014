@@ -103,8 +103,8 @@ tools:
     name: step-security/harden-runner
     homepage: "https://github.com/step-security/harden-runner"
     kind: action
-    current_version: "v2.22.1"
-    pin: "step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25"
+    current_version: "v2.22.2"
+    pin: "step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2"
     used_by:
       - .github/workflows/ci.yml
       - .github/workflows/dependabot-catalog-convergence.yml
@@ -123,8 +123,8 @@ tools:
     name: github/codeql-action
     homepage: "https://github.com/github/codeql-action"
     kind: action
-    current_version: "v4.38.3"
-    pin: "github/codeql-action@24c54180a607b1449ed407dd24f251e4e9147c8d"
+    current_version: "v4.39.0"
+    pin: "github/codeql-action@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee"
     used_by:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/public-codeql.yml
@@ -146,8 +146,8 @@ tools:
     name: ossf/scorecard-action
     homepage: "https://github.com/ossf/scorecard-action"
     kind: action
-    current_version: "v2.4.4"
-    pin: "ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc"
+    current_version: "v2.5.0"
+    pin: "ossf/scorecard-action@fa7117db83c52d787ae5a89f350999701505d78e"
     used_by:
       - .github/workflows/public-scorecard-analysis.yml
       - .github/workflows/public-scorecard.yml
@@ -469,8 +469,8 @@ tools:
     name: bridgecrewio/checkov-action
     homepage: "https://github.com/bridgecrewio/checkov-action"
     kind: action
-    current_version: "v12.3131.0"
-    pin: "bridgecrewio/checkov-action@c13aafd679d3814a25067d10fcaf98c4f7594931"
+    current_version: "v12.3134.0"
+    pin: "bridgecrewio/checkov-action@6f26dc90000b74feb589a906cdfae540f5119895"
     used_by:
       - .github/workflows/iac-scan.yml
     last_verified: "2026-09-21"
@@ -514,8 +514,8 @@ tools:
     name: astral-sh/setup-uv
     homepage: "https://github.com/astral-sh/setup-uv"
     kind: action
-    current_version: "v10.2.0"
-    pin: "astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7"
+    current_version: "v10.3.0"
+    pin: "astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884"
     used_by:
       - .github/workflows/ci.yml
       - .github/workflows/dependabot-catalog-convergence.yml
@@ -593,8 +593,8 @@ tools:
     name: actions/setup-java
     homepage: "https://github.com/actions/setup-java"
     kind: action
-    current_version: "v6.0.1"
-    pin: "actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6"
+    current_version: "v6.1.0"
+    pin: "actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad"
     used_by:
       - .github/workflows/java-ci.yml
       - .github/workflows/kotlin-android-ci.yml
@@ -660,8 +660,8 @@ tools:
     name: taiki-e/install-action
     homepage: "https://github.com/taiki-e/install-action"
     kind: action
-    current_version: "v2.87.26"
-    pin: "taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad"
+    current_version: "v2.87.29"
+    pin: "taiki-e/install-action@8cca0918f8471c33515202b73f56ab27f2bed283"
     used_by:
       - .github/workflows/rust-supply-chain.yml
     last_verified: "2026-09-21"
