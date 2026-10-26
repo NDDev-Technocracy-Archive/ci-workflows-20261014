@@ -9,4 +9,4 @@
 #   uv pip compile --generate-hashes --universal --python-version 3.13 \
 #       -o requirements-qt.txt requirements-qt.in
 aqtinstall==3.3.0
-py7zr==1.1.3
+py7zr==1.1.4
