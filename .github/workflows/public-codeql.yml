@@ -79,7 +79,7 @@ jobs:
         language: ${{ fromJSON(inputs.languages) }}
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25  # v2.22.1
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2  # v2.22.2
         with:
           egress-policy: ${{ inputs.egress_policy }}
 
@@ -115,21 +115,21 @@ jobs:
 
       - name: Initialize CodeQL
         if: ${{ inputs.config_file == '' }}
-        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
+        uses: github/codeql-action/init@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee  # v4.39.0
         with:
           languages: ${{ matrix.language }}
           queries: ${{ inputs.queries }}
 
       - name: Initialize CodeQL with config
         if: ${{ inputs.config_file != '' }}
-        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
+        uses: github/codeql-action/init@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee  # v4.39.0
         with:
           languages: ${{ matrix.language }}
           config-file: ${{ inputs.config_file }}
 
       - name: Autobuild
         if: ${{ inputs.autobuild && inputs.build_command == '' }}
-        uses: github/codeql-action/autobuild@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
+        uses: github/codeql-action/autobuild@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee  # v4.39.0
 
       - name: Custom build
         if: ${{ inputs.build_command != '' }}
@@ -139,13 +139,13 @@ jobs:
 
       - name: Analyze
         if: ${{ inputs.output_directory == '' }}
-        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
+        uses: github/codeql-action/analyze@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee  # v4.39.0
         with:
           category: "/language:${{ matrix.language }}"
 
       - name: Analyze with output directory
         if: ${{ inputs.output_directory != '' }}
-        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d  # v4.38.3
+        uses: github/codeql-action/analyze@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee  # v4.39.0
         with:
           category: "/language:${{ matrix.language }}"
           output: ${{ inputs.output_directory }}
