@@ -49,7 +49,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/go-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/go
 
   # supporting — Python lane. test_command is required by the contract, so this
@@ -60,7 +60,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/python-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/python
       # No --system: the workflow now activates a uv venv on the requested
       # interpreter, and --system would push the install back onto the runner's
@@ -74,7 +74,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/python-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       package_manager: pip
       python_version: '3.13'
       cache: pip
@@ -90,7 +90,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/node-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/node
       test_command: "bun test"
 
@@ -116,7 +116,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/node-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       package_manager: ${{ matrix.package_manager }}
       cache: ${{ matrix.cache }}
       cache_dependency_path: ${{ matrix.cache_dependency_path }}
@@ -133,7 +133,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/rust-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/rust
       fmt_command: "cargo fmt --all -- --check"
       clippy_command: "cargo clippy --locked --all-targets -- -D warnings"
@@ -145,7 +145,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/cpp-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/cpp
 
   # supporting — Terraform fmt/init/validate. The fixture declares no provider,
@@ -156,7 +156,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/terraform-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/terraform
 
   # supporting — sqlfluff lint on the ansi dialect.
@@ -166,7 +166,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/sql-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/sql
 
   # supporting — the three docs lanes at once: lychee, typos and markdownlint.
@@ -178,7 +178,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/docs-quality.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       # Repo-root-relative on purpose — see the scope note in docs-quality.yml.
       # The first run of this fixture set working_directory alone and scanned
       # the whole repository, failing on "NDDev" in docs/02. That is what these
@@ -195,7 +195,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/hadolint-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       dockerfile: tests/fixtures/docker/Dockerfile
 
   # supporting — stylelint and htmlhint. The fixture carries its own
@@ -207,7 +207,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/web-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/web
 
   # supporting — Trivy filesystem scan, pointed at the fixture estate rather
@@ -218,7 +218,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/container-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       scan_type: fs
       scan_ref: tests/fixtures
 
@@ -242,7 +242,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/java-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/java
 
   # supporting — the .NET restore, build and run lanes. test_command is
@@ -255,7 +255,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/dotnet-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/dotnet
       test_command: "dotnet run --no-build --configuration Release"
 
@@ -414,7 +414,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/benchmark-compare.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       language: go
       working_directory: tests/fixtures/go
       bench_command: "go test -bench=. -benchmem -run=XXX_no_tests ./... | tee output.txt"
@@ -432,7 +432,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/r-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/r
 
   # supporting — mutation testing over the Rust fixture. cargo-mutants is used
@@ -445,7 +445,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/mutation-testing.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       language: rust
       working_directory: tests/fixtures/rust
       install_command: "cargo install cargo-mutants --locked"
@@ -457,7 +457,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/dart-flutter-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-24.04
       flutter_version: '3.47.0'
       working_directory: tests/fixtures/flutter
 
@@ -467,7 +467,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/kotlin-android-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-24.04
       working_directory: tests/fixtures/android
 
   fixture-qt-ci:
@@ -476,7 +476,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/qt-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-24.04
       qt_version: '6.8.3'
       working_directory: tests/fixtures/qt
 
@@ -484,7 +484,7 @@ jobs:
     name: observe / dart-flutter-ci
     needs: fixture-dart-flutter-ci
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -528,7 +528,7 @@ jobs:
     name: observe / kotlin-android-ci
     needs: fixture-kotlin-android-ci
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -576,7 +576,7 @@ jobs:
   # belong to the per-run receipt, not to a file in git.
   generate-android-provenance:
     name: reproduce / android provenance
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     permissions:
       contents: read
@@ -644,7 +644,7 @@ jobs:
     name: observe / qt-ci
     needs: fixture-qt-ci
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -733,7 +733,7 @@ jobs:
       - fixture-sql-ci-os
       - fixture-web-ci-os
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read

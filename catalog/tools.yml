@@ -18,7 +18,7 @@ tools:
       rather than resolved at run time. Pinning the two top-level names left
       everything they pull unbounded.
     lock: requirements-qt.txt
-    lock_sha256: "4ee004df4493864cc2af167273833df756dac83bd4163f5a5e38de46c85b02bc"
+    lock_sha256: "cc52353296029b9b71a2c5423b80bed0c35314ddd027bfcc4c46b0bf7b81c810"
   - id: py7zr
     name: py7zr
     homepage: https://github.com/miurahr/py7zr
@@ -30,7 +30,7 @@ tools:
     last_verified: "2026-09-21"
     notes: aqtinstall's archive backend; locked in the same closure.
     lock: requirements-qt.txt
-    lock_sha256: "4ee004df4493864cc2af167273833df756dac83bd4163f5a5e38de46c85b02bc"
+    lock_sha256: "cc52353296029b9b71a2c5423b80bed0c35314ddd027bfcc4c46b0bf7b81c810"
   - id: actionlint
     name: actionlint
     homepage: "https://github.com/rhysd/actionlint"
@@ -129,6 +129,7 @@ tools:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/public-codeql.yml
       - .github/workflows/public-scorecard.yml
+      - .github/workflows/security.yml
       - .github/workflows/zizmor-sarif.yml
     last_verified: "2026-09-21"
 
@@ -150,8 +151,8 @@ tools:
     pin: "ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc"
     used_by:
       - .github/workflows/public-scorecard-analysis.yml
-      - .github/workflows/public-scorecard.yml
       - .github/workflows/public-scorecard-json.yml
+      - .github/workflows/public-scorecard.yml
     last_verified: "2026-09-21"
 
   - id: attest
@@ -230,6 +231,7 @@ tools:
       - .github/workflows/rust-ci.yml
       - .github/workflows/rust-supply-chain.yml
       - .github/workflows/secret-scan.yml
+      - .github/workflows/security.yml
       - .github/workflows/semgrep-ci.yml
       - .github/workflows/sql-ci.yml
       - .github/workflows/swift-ci.yml
@@ -678,3 +680,13 @@ tools:
     used_by:
       - .github/workflows/clusterfuzzlite.yml
     last_verified: "2026-09-21"
+
+  - id: std-0004-tools
+    name: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows (tools action)
+    homepage: "https://github.com/NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows"
+    kind: action
+    current_version: "nddev-cicd-v0.6.18"
+    pin: "NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows@9cc44a5043ddd266f3e73fefacc52f5cf5a7d70f"
+    used_by:
+      - .github/workflows/ci.yml
+    last_verified: "2026-11-01"

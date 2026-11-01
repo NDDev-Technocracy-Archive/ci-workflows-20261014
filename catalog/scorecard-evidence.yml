@@ -21,7 +21,7 @@ entrypoint_matrix:
       repository_kind: non-fork
       events: [push, schedule]
       ref: actual-default-branch
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
     evidence_obligations:
       - job-and-analysis-step-success
       - no-oidc-or-write-permission
@@ -48,7 +48,7 @@ entrypoint_matrix:
       repository_kind: non-fork
       events: [push, schedule]
       ref: actual-default-branch
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
     evidence_obligations:
       - analysis-and-upload-steps-success
       - exact-caller-and-reusable-sha
@@ -112,7 +112,7 @@ designated_consumer:
   reusable_workflow: .github/workflows/public-scorecard.yml
   analysis_reusable_workflow: .github/workflows/public-scorecard-analysis.yml
   supported_events: [push, schedule]
-  runner: ubuntu-latest
+  runner: ubuntu-26.04
   publish_results: true
   sarif_fallback_category: ossf-scorecard
   sarif_categories:

@@ -51,7 +51,7 @@ EXPECTED_CONSUMER = {
     "reusable_workflow": ".github/workflows/public-scorecard.yml",
     "analysis_reusable_workflow": ".github/workflows/public-scorecard-analysis.yml",
     "supported_events": ["push", "schedule"],
-    "runner": "ubuntu-latest",
+    "runner": "ubuntu-26.04",
     "publish_results": True,
     "sarif_fallback_category": "ossf-scorecard",
     "sarif_categories": EXPECTED_CATEGORIES,
@@ -84,7 +84,7 @@ EXPECTED_MATRIX = [{
     "allowed_callers": {
         "visibility": "public", "repository_kind": "non-fork",
         "events": ["push", "schedule"], "ref": "actual-default-branch",
-        "runner": "ubuntu-latest",
+        "runner": "ubuntu-26.04",
     },
     "evidence_obligations": [
         "job-and-analysis-step-success", "no-oidc-or-write-permission",
@@ -108,7 +108,7 @@ EXPECTED_MATRIX = [{
     "allowed_callers": {
         "visibility": "public", "repository_kind": "non-fork",
         "events": ["push", "schedule"], "ref": "actual-default-branch",
-        "runner": "ubuntu-latest",
+        "runner": "ubuntu-26.04",
     },
     "evidence_obligations": [
         "analysis-and-upload-steps-success", "exact-caller-and-reusable-sha",
@@ -224,12 +224,12 @@ def _caller_contract_problems(caller: dict[str, Any], consumer: dict[str, Any]) 
         "analysis-only": (
             consumer["analysis_only_permissions"],
             "./.github/workflows/public-scorecard-analysis.yml",
-            {"runner": "ubuntu-latest", "sarif_category": "ossf-scorecard"},
+            {"runner": "ubuntu-26.04", "sarif_category": "ossf-scorecard"},
         ),
         "scorecard": (
             consumer["required_permissions"],
             "./.github/workflows/public-scorecard.yml",
-            {"runner": "ubuntu-latest", "publish_results": True,
+            {"runner": "ubuntu-26.04", "publish_results": True,
              "sarif_category": "ossf-scorecard"},
         ),
     }

@@ -38,7 +38,7 @@ concurrency:
 jobs:
   resolve:
     name: Resolve version
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -181,13 +181,13 @@ jobs:
       contents: read
     uses: ./.github/workflows/release-promotion-gate.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       version: ${{ needs.resolve.outputs.version }}
 
   authorize:
     name: Authorize release
     needs: [resolve, promotion]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     # The protected environment is the release authority. A GitHub-verified
     # signature proves who signed, never that the signer may ship — this job is
@@ -218,7 +218,7 @@ jobs:
       artifact-metadata: write   # actions/attest artifact storage record (required at v4.1.1)
     uses: ./.github/workflows/release-supply-chain.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       version: ${{ needs.resolve.outputs.version }}
       package_name: ci-workflows
       archive_paths: >-

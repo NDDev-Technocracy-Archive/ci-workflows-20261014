@@ -51,7 +51,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/actionlint.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
 
   # security-blocking — the private-free scanner lane. Must be proven separately
   # from the SARIF variant precisely because it drops the upload step and its
@@ -63,7 +63,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/zizmor-no-sarif.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
 
   # security-blocking — full-history gitleaks through a digest-pinned container.
   fixture-secret-scan:
@@ -72,7 +72,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/secret-scan.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
 
   # security-blocking — the same full-history scan through the independently
   # pinned native release asset. No Docker command is reachable in this mode.
@@ -82,7 +82,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/secret-scan.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       execution_mode: binary
 
   # security-blocking — all four private read-only scanners share one checkout
@@ -95,7 +95,7 @@ jobs:
       security-events: write  # publish the fixture's zizmor SARIF result
     uses: ./.github/workflows/nddev-security-bundle.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       zizmor_target: .github/workflows
       osv_lockfile: requirements-ci.txt
 
@@ -107,7 +107,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/private-security-bundle-free.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       zizmor_target: .github/workflows
       osv_lockfile: requirements-ci.txt
 
@@ -119,7 +119,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/private-static.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       # The first fixture run failed here with `uv: command not found`: the lane
       # sets up Python and then runs a caller command with no installer in
       # scope. That gap is now closed by setup_uv, and this fixture is what
@@ -149,7 +149,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/monorepo-changed-paths.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       filters: '{"workflows":[".github/workflows/"],"catalog":["catalog/"],"scripts":["scripts/"]}'
 
   # security-blocking — checksum-verified OSV-Scanner binary and the
@@ -160,7 +160,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/osv-scan.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       # tests/fixtures/android vendors the Android Gradle Plugin's transitive
       # closure so the fixture can build under LockMode.STRICT. It is a fixture
       # input, not something this library ships or whose versions it picks, and
@@ -178,7 +178,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/semgrep-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
 
   fixture-coverage-gate:
     name: fixture / coverage gate
@@ -186,7 +186,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/coverage-gate.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/python
       coverage_command: "mkdir -p coverage && printf '<coverage version=\"1\"/>\\n' > coverage/coverage.xml"
       use_codecov: false
@@ -201,7 +201,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/grype-scan.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       path: tests/fixtures
       severity_cutoff: critical
       fail_build: true
@@ -212,7 +212,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/iac-scan.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       directory: tests/fixtures/terraform
       framework: terraform
       soft_fail: true
@@ -226,7 +226,7 @@ jobs:
       security-events: write  # publish the fixture analysis to code scanning
     uses: ./.github/workflows/public-codeql.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       languages: '["actions"]'
       autobuild: false
 
@@ -238,7 +238,7 @@ jobs:
       security-events: write  # publish the fixture SARIF to code scanning
     uses: ./.github/workflows/zizmor-sarif.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       persona: regular
       min_severity: high
       target: tests/fixtures/zizmor-clean
@@ -249,7 +249,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/rust-supply-chain.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       working_directory: tests/fixtures/rust
       deny_arguments: '--all-features --config tests/fixtures/rust/deny.toml'
       enable_deny: true
@@ -263,7 +263,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/docs-ci.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       # The default glob is repo-wide, which is the point — this lane checks
       # every link this repository ships. It has to skip the negative fixture,
       # whose link is broken deliberately so the negative gates in ci.yml can prove the
@@ -281,7 +281,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/gate.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       check_name: fixture summary
       needs_json: ${{ toJSON(needs) }}
       required_jobs: "fixture-actionlint,fixture-docs-ci"
@@ -317,7 +317,7 @@ jobs:
       - fixture-docs-ci
       - fixture-gate-report
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read

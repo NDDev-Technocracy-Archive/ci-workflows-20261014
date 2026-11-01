@@ -20,7 +20,7 @@ jobs:
       actions: read # inspect workflow definitions for the scoring checks
     uses: ./.github/workflows/public-scorecard-analysis.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       sarif_category: ossf-scorecard
 
   scorecard:
@@ -31,6 +31,6 @@ jobs:
       actions: read # inspect workflow definitions for the scoring checks
     uses: ./.github/workflows/public-scorecard.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       publish_results: true
       sarif_category: ossf-scorecard

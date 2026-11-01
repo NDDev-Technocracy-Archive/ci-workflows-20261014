@@ -38,7 +38,7 @@ jobs:
   # third party's pricing page going stale enough to block an unrelated bugfix.
   validate:
     name: static validators
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: read
@@ -95,7 +95,7 @@ jobs:
   # workflow was touched. Needs full history to resolve a merge base.
   validate-touched:
     name: changed-path validators
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: read
@@ -229,7 +229,7 @@ jobs:
       contents: read
     uses: ./.github/workflows/actionlint.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
 
   zizmor:
     permissions:
@@ -238,7 +238,7 @@ jobs:
       security-events: write  # publish zizmor SARIF to code scanning
     uses: ./.github/workflows/zizmor-sarif.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       # pedantic adds undocumented-permissions on top of the regular persona:
       # every granted scope must say why it is granted. That is enforceable
       # here precisely because this repository grants few of them, and a
@@ -265,7 +265,7 @@ jobs:
 
   shell-gates:
     name: gates refuse bad input
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
       contents: read
@@ -390,7 +390,7 @@ jobs:
 
   dockerfile-gate:
     name: hadolint refuses an unpinned image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     permissions:
       contents: read
@@ -441,7 +441,7 @@ jobs:
   ci-gate:
     name: ci-gate
     needs: [validate, validate-touched, actionlint, zizmor, shell-gates, dockerfile-gate]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: always()
     timeout-minutes: 5
     permissions:
@@ -476,3 +476,33 @@ jobs:
               raise SystemExit(1)
           print(f"ci-gate passed ({len(results)} jobs)")
           PY
+
+  workflows:
+    # This repository's own workflows (the published reusables are linted by their callers' CI):
+    # lint and audit plus the secret scan, new commits on pull requests, full history on main.
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/tools@9cc44a5043ddd266f3e73fefacc52f5cf5a7d70f # nddev-cicd-v0.6.18
+        with:
+          capability: security
+      - name: Lint and audit this repository's own workflows
+        run: |
+          actionlint .github/workflows/ci.yml .github/workflows/maintenance.yml .github/workflows/release.yml .github/workflows/runtime-fixtures-event-write.yml .github/workflows/runtime-fixtures-fuzzing.yml .github/workflows/runtime-fixtures-languages.yml .github/workflows/runtime-fixtures.yml .github/workflows/security.yml
+          zizmor --offline --no-progress .github/workflows/ci.yml .github/workflows/maintenance.yml .github/workflows/release.yml .github/workflows/runtime-fixtures-event-write.yml .github/workflows/runtime-fixtures-fuzzing.yml .github/workflows/runtime-fixtures-languages.yml .github/workflows/runtime-fixtures.yml .github/workflows/security.yml
+      - name: Scan new pull request commits, or the full history on main
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ -n "$BASE" ]; then
+            gitleaks git --no-banner --redact --log-opts="$BASE..$HEAD" .
+          else
+            gitleaks git --no-banner --redact .
+          fi
