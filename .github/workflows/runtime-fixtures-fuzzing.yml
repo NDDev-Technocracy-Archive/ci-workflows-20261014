@@ -49,7 +49,7 @@ jobs:
     name: fuzz runtime evidence
     if: ${{ always() }}
     needs: [cargo-fuzz, clusterfuzzlite]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions: {}
     steps:

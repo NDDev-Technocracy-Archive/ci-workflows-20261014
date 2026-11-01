@@ -38,7 +38,7 @@ concurrency:
 jobs:
   resolve:
     name: Resolve version
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -187,7 +187,7 @@ jobs:
   authorize:
     name: Authorize release
     needs: [resolve, promotion]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     # The protected environment is the release authority. A GitHub-verified
     # signature proves who signed, never that the signer may ship — this job is

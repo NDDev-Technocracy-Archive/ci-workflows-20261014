@@ -21,7 +21,7 @@ concurrency:
 jobs:
   prepare-benchmark:
     if: ${{ github.event_name != 'pull_request' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -79,7 +79,7 @@ jobs:
   cleanup-benchmark:
     if: ${{ always() && github.event_name != 'pull_request' }}
     needs: [prepare-benchmark, fixture-benchmark]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: write # delete only the run-scoped branch if the action wrote unexpectedly
@@ -138,7 +138,7 @@ jobs:
   evidence-benchmark:
     if: ${{ always() && github.event_name != 'pull_request' }}
     needs: [fixture-benchmark, cleanup-benchmark]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -170,7 +170,7 @@ jobs:
 
   prepare-pr-hygiene:
     if: ${{ github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       pull-requests: read # snapshot only this PR's pre-run ci label state
@@ -231,7 +231,7 @@ jobs:
   cleanup-pr-hygiene:
     if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
     needs: [prepare-pr-hygiene, fixture-pr-hygiene]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       pull-requests: write # observe and restore only this PR's pre-run ci label state
@@ -285,7 +285,7 @@ jobs:
   evidence-pr-hygiene:
     if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
     needs: [fixture-pr-hygiene, fixture-pr-hygiene-explicit, cleanup-pr-hygiene]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
