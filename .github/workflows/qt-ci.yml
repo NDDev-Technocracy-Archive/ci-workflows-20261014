@@ -130,7 +130,7 @@ jobs:
         env:
           CALLEE_REPOSITORY: ${{ job.workflow_repository }}
           CALLEE_SHA: ${{ job.workflow_sha }}
-          LOCK_SHA256: cc52353296029b9b71a2c5423b80bed0c35314ddd027bfcc4c46b0bf7b81c810
+          LOCK_SHA256: 142b108ba1d75e1d4c691457ab6320752efdc0f5edb0a5bf31f0422c96146de8
           PYTHON_VERSION: '3.13'
         run: |
           set -euo pipefail
