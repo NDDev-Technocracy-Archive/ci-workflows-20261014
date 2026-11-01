@@ -685,8 +685,8 @@ tools:
     name: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows (tools action)
     homepage: "https://github.com/NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows"
     kind: action
-    current_version: "nddev-cicd-v0.6.18"
-    pin: "NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows@9cc44a5043ddd266f3e73fefacc52f5cf5a7d70f"
+    current_version: "nddev-cicd-v0.6.20"
+    pin: "NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows@c192c6adcf22088abf456635de614d42e8fa3f8d"
     used_by:
       - .github/workflows/ci.yml
     last_verified: "2026-11-01"
