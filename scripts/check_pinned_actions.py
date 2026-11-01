@@ -27,7 +27,9 @@ DIGEST_RE = re.compile(r"@sha256:[0-9a-f]{64}$")
 # test. A semantic release version or an ISO date for an untagged upstream
 # identifies stable inputs. An unreleased development input must instead name
 # its exact commit, equal to the immutable ref, rather than inventing a release.
-PIN_COMMENT_RE = re.compile(r"#\s*(v?\d+\.\d+(?:\.\d+)?[\w.+-]*|\d{4}-\d{2}-\d{2})\b")
+# A monorepo tags each component with a prefix (`nddev-cicd-v0.6.18`); that tag
+# is the release name, so the prefix is accepted in front of the version.
+PIN_COMMENT_RE = re.compile(r"#\s*((?:[a-z][a-z0-9]*(?:-[a-z0-9]+)*-)?v?\d+\.\d+(?:\.\d+)?[\w.+-]*|\d{4}-\d{2}-\d{2})\b")
 
 
 DEVELOPMENT_COMMENT_RE = re.compile(r"^\s*#\s*commit:([0-9a-f]{40})(?:\s|$)")

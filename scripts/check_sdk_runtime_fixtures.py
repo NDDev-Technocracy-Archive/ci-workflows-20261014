@@ -374,7 +374,9 @@ def _contract_problems(*, require_generated: bool = True) -> list[str]:
         if caller.get("uses") != data["workflow"].replace(".github", "./.github"):
             problems.append(f"{kind}: live caller is missing or points at wrong reusable")
         passed = caller.get("with", {})
-        if passed.get("runner") != "ubuntu-latest" or passed.get("working_directory") != data["working_directory"]:
+        # The SDK fixtures depend on the toolchains preinstalled on the Ubuntu 24.04
+        # image (the image ubuntu-latest resolved to); they name it exactly.
+        if passed.get("runner") != "ubuntu-24.04" or passed.get("working_directory") != data["working_directory"]:
             problems.append(f"{kind}: caller must select exact standard runner and fixture root")
         if any(name in passed for name in keys):
             problems.append(f"{kind}: caller overrides a documented default command")

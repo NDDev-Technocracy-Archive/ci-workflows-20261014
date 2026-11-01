@@ -39,3 +39,9 @@ paths:
   .github/workflows/{dart-flutter-ci,kotlin-android-ci,nddev-security-bundle,private-security-bundle-free,qt-ci}.yml:
     ignore:
       - '^property "workflow_(file_path|repository|sha)" is not defined in object type \{check_run_id: number; container: .+\}$'
+
+# GitHub-hosted Ubuntu 26.04 images; actionlint 1.7.12 predates them (rhysd/actionlint#682).
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
+    - ubuntu-26.04-arm

@@ -21,7 +21,7 @@ concurrency:
 jobs:
   prepare-benchmark:
     if: ${{ github.event_name != 'pull_request' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -66,7 +66,7 @@ jobs:
       contents: write # pinned publish action receives only repository contents write
     uses: ./.github/workflows/benchmark.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       language: go
       working_directory: tests/fixtures/go
       bench_command: 'go test -run=^$ -bench=. -benchmem > benchmark.txt'
@@ -79,7 +79,7 @@ jobs:
   cleanup-benchmark:
     if: ${{ always() && github.event_name != 'pull_request' }}
     needs: [prepare-benchmark, fixture-benchmark]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: write # delete only the run-scoped branch if the action wrote unexpectedly
@@ -138,7 +138,7 @@ jobs:
   evidence-benchmark:
     if: ${{ always() && github.event_name != 'pull_request' }}
     needs: [fixture-benchmark, cleanup-benchmark]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -170,7 +170,7 @@ jobs:
 
   prepare-pr-hygiene:
     if: ${{ github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       pull-requests: read # snapshot only this PR's pre-run ci label state
@@ -206,7 +206,7 @@ jobs:
       pull-requests: write # validate the PR and apply the existing ci label
     uses: ./.github/workflows/pr-hygiene.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       commitlint: true
       pr_title: true
       labeler: true
@@ -221,7 +221,7 @@ jobs:
       pull-requests: write # required ceiling for disabled PR mutation jobs
     uses: ./.github/workflows/pr-hygiene.yml  # zizmor: ignore[self-repository]
     with:
-      runner: ubuntu-latest
+      runner: ubuntu-26.04
       commitlint: true
       commitlint_config: .github/commitlint-runtime-evidence.mjs
       pr_title: false
@@ -231,7 +231,7 @@ jobs:
   cleanup-pr-hygiene:
     if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
     needs: [prepare-pr-hygiene, fixture-pr-hygiene]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       pull-requests: write # observe and restore only this PR's pre-run ci label state
@@ -285,7 +285,7 @@ jobs:
   evidence-pr-hygiene:
     if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
     needs: [fixture-pr-hygiene, fixture-pr-hygiene-explicit, cleanup-pr-hygiene]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
