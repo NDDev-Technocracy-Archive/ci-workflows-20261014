@@ -18,7 +18,7 @@ tools:
       rather than resolved at run time. Pinning the two top-level names left
       everything they pull unbounded.
     lock: requirements-qt.txt
-    lock_sha256: "4ee004df4493864cc2af167273833df756dac83bd4163f5a5e38de46c85b02bc"
+    lock_sha256: "cc52353296029b9b71a2c5423b80bed0c35314ddd027bfcc4c46b0bf7b81c810"
   - id: py7zr
     name: py7zr
     homepage: https://github.com/miurahr/py7zr
@@ -30,7 +30,7 @@ tools:
     last_verified: "2026-09-21"
     notes: aqtinstall's archive backend; locked in the same closure.
     lock: requirements-qt.txt
-    lock_sha256: "4ee004df4493864cc2af167273833df756dac83bd4163f5a5e38de46c85b02bc"
+    lock_sha256: "cc52353296029b9b71a2c5423b80bed0c35314ddd027bfcc4c46b0bf7b81c810"
   - id: actionlint
     name: actionlint
     homepage: "https://github.com/rhysd/actionlint"
