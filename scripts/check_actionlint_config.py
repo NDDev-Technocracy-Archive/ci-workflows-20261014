@@ -67,6 +67,13 @@ def check() -> list[str]:
     if not CONFIG.is_file():
         return [f"{CONFIG.name} is missing; the SDK reusables cannot pass actionlint without it"]
     config = strict_load(CONFIG)
+    # GitHub-hosted Ubuntu 26.04 images, which actionlint 1.7.12 predates
+    # (rhysd/actionlint#682): declared as runner labels and nothing else.
+    hosted = config.pop("self-hosted-runner", None)
+    if hosted is not None and hosted != {"labels": ["ubuntu-26.04", "ubuntu-26.04-arm"]}:
+        return [
+            f"{CONFIG.name} self-hosted-runner may declare only the hosted "
+            f"ubuntu-26.04 and ubuntu-26.04-arm labels; found {hosted!r}"]
     if set(config) != {"paths"}:
         problems.append(
             f"{CONFIG.name} must declare only `paths`; found {sorted(config)}")
