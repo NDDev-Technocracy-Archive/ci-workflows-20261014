@@ -103,8 +103,8 @@ tools:
     name: step-security/harden-runner
     homepage: "https://github.com/step-security/harden-runner"
     kind: action
-    current_version: "v2.22.1"
-    pin: "step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25"
+    current_version: "v2.22.2"
+    pin: "step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2"
     used_by:
       - .github/workflows/ci.yml
       - .github/workflows/dependabot-catalog-convergence.yml
@@ -123,8 +123,8 @@ tools:
     name: github/codeql-action
     homepage: "https://github.com/github/codeql-action"
     kind: action
-    current_version: "v4.38.3"
-    pin: "github/codeql-action@24c54180a607b1449ed407dd24f251e4e9147c8d"
+    current_version: "v4.39.1"
+    pin: "github/codeql-action@9b3254085494b55a0f7c4c2b3d2d52cc712ce370"
     used_by:
       - .github/workflows/nddev-security-bundle.yml
       - .github/workflows/public-codeql.yml
@@ -147,8 +147,8 @@ tools:
     name: ossf/scorecard-action
     homepage: "https://github.com/ossf/scorecard-action"
     kind: action
-    current_version: "v2.4.4"
-    pin: "ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc"
+    current_version: "v2.5.0"
+    pin: "ossf/scorecard-action@fa7117db83c52d787ae5a89f350999701505d78e"
     used_by:
       - .github/workflows/public-scorecard-analysis.yml
       - .github/workflows/public-scorecard-json.yml
@@ -245,8 +245,8 @@ tools:
     name: actions/setup-python
     homepage: "https://github.com/actions/setup-python"
     kind: action
-    current_version: "v7.0.0"
-    pin: "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97"
+    current_version: "v7.1.0"
+    pin: "actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"
     used_by:
       - .github/workflows/benchmark-compare.yml
       - .github/workflows/benchmark.yml
@@ -379,8 +379,8 @@ tools:
     name: DavidAnson/markdownlint-cli2-action
     homepage: "https://github.com/DavidAnson/markdownlint-cli2-action"
     kind: action
-    current_version: "v24.2.0"
-    pin: "DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff"
+    current_version: "v25.0.0"
+    pin: "DavidAnson/markdownlint-cli2-action@696eb3f2509270d7b882d2aa68347bc676e7af34"
     used_by:
       - .github/workflows/docs-quality.yml
     last_verified: "2026-09-21"
@@ -471,8 +471,8 @@ tools:
     name: bridgecrewio/checkov-action
     homepage: "https://github.com/bridgecrewio/checkov-action"
     kind: action
-    current_version: "v12.3131.0"
-    pin: "bridgecrewio/checkov-action@c13aafd679d3814a25067d10fcaf98c4f7594931"
+    current_version: "v12.3135.0"
+    pin: "bridgecrewio/checkov-action@c3e106d5f8f4253a6de5110efb41a080f83db294"
     used_by:
       - .github/workflows/iac-scan.yml
     last_verified: "2026-09-21"
@@ -516,8 +516,8 @@ tools:
     name: astral-sh/setup-uv
     homepage: "https://github.com/astral-sh/setup-uv"
     kind: action
-    current_version: "v10.2.0"
-    pin: "astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7"
+    current_version: "v10.3.2"
+    pin: "astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e"
     used_by:
       - .github/workflows/ci.yml
       - .github/workflows/dependabot-catalog-convergence.yml
@@ -595,8 +595,8 @@ tools:
     name: actions/setup-java
     homepage: "https://github.com/actions/setup-java"
     kind: action
-    current_version: "v6.0.1"
-    pin: "actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6"
+    current_version: "v6.1.0"
+    pin: "actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad"
     used_by:
       - .github/workflows/java-ci.yml
       - .github/workflows/kotlin-android-ci.yml
@@ -628,8 +628,8 @@ tools:
     name: docker/login-action
     homepage: "https://github.com/docker/login-action"
     kind: action
-    current_version: "v4.6.0"
-    pin: "docker/login-action@dbcb813823bdd20940b903addbd779551569679f"
+    current_version: "v4.7.0"
+    pin: "docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6"
     used_by:
       - .github/workflows/docker-build.yml
     last_verified: "2026-09-21"
@@ -662,8 +662,8 @@ tools:
     name: taiki-e/install-action
     homepage: "https://github.com/taiki-e/install-action"
     kind: action
-    current_version: "v2.87.26"
-    pin: "taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad"
+    current_version: "v2.87.32"
+    pin: "taiki-e/install-action@5488ac5a951645ce95062214902ac4b6bc1a1037"
     used_by:
       - .github/workflows/rust-supply-chain.yml
     last_verified: "2026-09-21"
