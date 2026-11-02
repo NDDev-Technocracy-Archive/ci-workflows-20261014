@@ -495,12 +495,12 @@ jobs:
           persist-credentials: false
       - name: Set up isolated Python contract runtime
         id: python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: '3.13'
           update-environment: false
       - name: Set up uv
-        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e  # v10.3.2
         with:
           # Pinned, not inherited: setup-uv's `version` defaults to the
           # version in pyproject.toml or, absent one, whatever is latest.
@@ -539,12 +539,12 @@ jobs:
           persist-credentials: false
       - name: Set up isolated Python contract runtime
         id: python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: '3.13'
           update-environment: false
       - name: Set up uv
-        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e  # v10.3.2
         with:
           # Pinned, not inherited: setup-uv's `version` defaults to the
           # version in pyproject.toml or, absent one, whatever is latest.
@@ -586,7 +586,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up JDK
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6  # v6.0.1
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad  # v6.1.0
         with:
           java-version: '21'
           distribution: temurin
@@ -596,12 +596,12 @@ jobs:
           packages: 'platforms;android-37.0 build-tools;36.0.0'
       - name: Set up isolated Python contract runtime
         id: python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: '3.13'
           update-environment: false
       - name: Set up uv
-        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e  # v10.3.2
         with:
           # Pinned, not inherited: setup-uv's `version` defaults to the
           # version in pyproject.toml or, absent one, whatever is latest.
@@ -655,12 +655,12 @@ jobs:
           persist-credentials: false
       - name: Set up isolated Python contract runtime
         id: python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: '3.13'
           update-environment: false
       - name: Set up uv
-        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e  # v10.3.2
         with:
           # Pinned, not inherited: setup-uv's `version` defaults to the
           # version in pyproject.toml or, absent one, whatever is latest.
@@ -745,7 +745,7 @@ jobs:
 
       - name: Set up isolated Python contract runtime
         id: python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: '3.13'
           update-environment: false
