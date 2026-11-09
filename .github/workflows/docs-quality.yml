@@ -75,12 +75,12 @@ jobs:
 
       - name: Spell check (typos)
         if: ${{ inputs.typos }}
-        uses: crate-ci/typos@7f9d0819ca1c008ade73f4b41fa9d258d48f605b  # v1.51.1
+        uses: crate-ci/typos@4c8b7f51ca60df14e3c5ca82770dfbbe6c3dae85  # v1.52.0
         with:
           files: ${{ inputs.typos_files }}
 
       - name: Markdown lint
         if: ${{ inputs.markdownlint }}
-        uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff  # v24.2.0
+        uses: DavidAnson/markdownlint-cli2-action@696eb3f2509270d7b882d2aa68347bc676e7af34  # v25.0.0
         with:
           globs: ${{ inputs.markdownlint_globs }}
